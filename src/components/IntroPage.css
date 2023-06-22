@@ -1,0 +1,50 @@
+.intro-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15vh;
+  gap: 2.5rem;
+}
+
+.intro-head {
+  font-weight: 700;
+  display: flex;
+  padding-left: 10%;
+}
+
+.head-text {
+  width: 80%;
+  padding-left: 2rem;
+}
+
+.intro-desc {
+  font-weight: 200;
+  font-size: 1.1rem;
+  margin-top: -2rem;
+  width: 100%;
+  padding-left: 20%;
+  padding-right: 10%;
+}
+
+.start-btn-container {
+  padding-left: 10%;
+}
+
+.get-started-btn {
+  appearance: none;
+  border: none;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  height: 2.5rem;
+  width: 8rem;
+  border-radius: 5px;
+}
+
+.get-started-btn:hover {
+  filter: brightness(0.8);
+}
+
+.get-started-btn:active {
+  filter: brightness(0.6);
+}
