@@ -3,6 +3,8 @@ import './IntroPage.css';
 
 class IntroPage extends Component {
     render() {
+        const { getStartedFn } = this.props;
+
         return (
             <div className="intro-container">
                 <h1 className="intro-head">
@@ -15,7 +17,7 @@ class IntroPage extends Component {
                 </h1>
                 <p className="intro-desc">A free resume builder for developers & software engineers.</p>
                 <div className="start-btn-container">
-                    <button type="button" className="get-started-btn">Get Started!</button>
+                    <button type="button" onClick={getStartedFn} className="get-started-btn">Get Started!</button>
                 </div>
             </div>
         )

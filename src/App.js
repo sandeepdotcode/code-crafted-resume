@@ -1,12 +1,31 @@
 import { Component } from 'react';
 import './App.css';
 import IntroPage from './components/IntroPage';
+import MainPage from './components/MainPage';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      CurrentPage : IntroPage,
+    }
+
+    this.gotoBuilder = this.gotoBuilder.bind(this);
+  }
+
+  gotoBuilder() {
+    this.setState({
+      CurrentPage: MainPage,
+    })
+  }
+
   render() {
-    return (
+    const { CurrentPage } = this.state;
+    
+    return( 
       <div className="App">
-       <IntroPage />
+       <CurrentPage getStartedFn={this.gotoBuilder} />
       </div>
     );
   }

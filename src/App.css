@@ -22,10 +22,10 @@ body {
   color: var(--color-text);
   font-family: 'Inter';
   font-weight: 500;
-  height: 100vh;
 }
 
 .App {
+  height: 100vh;
 }
 
 h1 {
