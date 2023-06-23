@@ -1,0 +1,100 @@
+.main-container {
+  height: 100%;
+  display: flex;
+  gap: 2rem;
+}
+
+.sidebar {
+  flex-shrink: 1;
+  width: 5%;
+}
+
+.form-container {
+  flex: 1 1 auto;
+  /* padding: 10rem 10rem 10rem 25rem; */
+  padding: 10rem;
+  padding-left: 20rem;
+}
+
+.form-container h3 {
+  margin-left: 2rem;
+}
+
+.form {
+  border: 2px ridge var(--input-bg);
+  border-radius: 10px;
+  margin-top: 1rem;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 1100px;
+}
+
+.form::after {
+  content: "";
+  background: linear-gradient(
+    transparent,
+    mediumslateblue,
+    transparent
+  );
+  height: 150px;
+  width: 1px;
+  position: absolute;
+  left: -2px;
+  top: 75%;
+  opacity: 0;
+  transition: top 800ms ease,
+              opacity 800ms ease;
+}
+
+.form:hover::after {
+  top: 0;
+  opacity: 1;
+}
+
+.personal-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 40%;
+}
+
+.form label {
+  min-width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form input,
+.form textarea {
+  background-color: var(--input-bg);
+  color: var(--color-text);
+  font-size: 1.2rem;
+}
+
+.form input[type="text"],
+.form input[type="email"] {
+  height: 3rem;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+}
+
+label > span > span {
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+
+.summary-label {
+  flex: 1 0 auto;
+}
+
+.summary-label textarea {
+  height: 80%;
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+}

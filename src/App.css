@@ -1,8 +1,9 @@
 @import url(./assets/inter-v12-latin-font/inter-v12.css);
 
 :root {
-  --color-bg: black;
+  --color-bg: #1F1F1F;
   --color-text: whitesmoke;
+  --input-bg: rgb(46, 46, 46);
 }
 
 *, *::before, *::after {
@@ -30,4 +31,9 @@ body {
 
 h1 {
   font-size: 9rem;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 2rem;
 }

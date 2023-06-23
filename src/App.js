@@ -8,7 +8,7 @@ class App extends Component {
     super();
 
     this.state = {
-      CurrentPage : IntroPage,
+      CurrentPage : MainPage,  // default should be IntroPage, changed now for dev
     }
 
     this.gotoBuilder = this.gotoBuilder.bind(this);
