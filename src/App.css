@@ -4,6 +4,8 @@
   --color-bg: #1F1F1F;
   --color-text: whitesmoke;
   --input-bg: rgb(46, 46, 46);
+  /* --color-accent: mediumslateblue; */
+  --color-accent: #ce4257;
 }
 
 *, *::before, *::after {
