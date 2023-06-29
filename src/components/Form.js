@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 class Personal extends Component {
   render() {
@@ -28,8 +29,8 @@ class FormTitle extends Component {
       <div className="form-title-div">
         <h3>Personal Details</h3>
         <div className="next-btn-div">
-          <button type="button" className="prev-btn">Back</button>
-          <button type="button" className="next-btn">Next</button>
+          <button type="button" className="prev-btn"><FaAngleLeft /> Back</button>
+          <button type="button" className="next-btn">Next <FaAngleRight /></button>
         </div>
       </div>
     )

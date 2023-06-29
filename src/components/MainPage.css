@@ -79,6 +79,24 @@
   width: 6rem;
   height: 2rem;
   font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.next-btn-div svg {
+  height: 0.7rem;
+  position: relative;
+  top: 0.05rem;
+}
+
+.next-btn {
+  padding-left: 1rem;
+}
+
+.prev-btn {
+  padding-right: 1rem;
 }
 
 .personal-input-container {
