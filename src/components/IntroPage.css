@@ -32,8 +32,6 @@
 }
 
 .get-started-btn {
-  appearance: none;
-  border: none;
   background-color: var(--color-text);
   color: var(--color-bg);
   height: 2.5rem;

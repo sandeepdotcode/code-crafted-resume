@@ -1,0 +1,68 @@
+.sidebar > div {
+  width: 4rem;
+  min-height: 4rem;
+  border-radius: 5px;
+  background-color: var(--input-bg);
+}
+
+.sidebar button {
+  color: #cccccc;
+  height: 100%;
+  width: 100%;
+  background-color: var(--input-bg);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar button:hover {
+  filter: brightness(0.85);
+}
+
+div.layout-div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+}
+
+.layout-div > div {
+  height: 2.5rem;
+}
+
+.layout-btn {
+  color: #cccccc;
+  height: 100%;
+  width: 100%;
+  background-color: var(--input-bg);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebar svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+button.layout-opt-btn {
+  height: 2.5rem;
+  border-radius: 3px;
+  color: #cccccc;
+  background-color: var(--input-bg);
+  display: flex;
+  justify-content: center;
+}
+
+.dual-icon-1 {
+  position: relative;
+  left: 0.3rem;
+}
+
+.dual-icon-2 {
+  position: relative;
+  right: 0.3rem;
+}

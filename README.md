@@ -1,4 +1,4 @@
-# Code Crafted Resume
+# Code Crafted Resume(WiP)
 
 A resume builder designed for Developers and Software Engineers.
 
