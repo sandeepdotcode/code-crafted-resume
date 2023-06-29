@@ -30,7 +30,7 @@ class Sidebar extends Component {
           <button type="button" className="mode-btn"><DualMode /></button>
         </div>
         <div className="prev-btn-div">
-          <button type="button" className="prev-btn"><FaEye></FaEye></button>
+          <button type="button" className="preview-btn"><FaEye></FaEye></button>
         </div>
       </div>
     );
