@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Sidebar from "./Sidebar";
-import Form from "./Form";
+import Form from "./Form/Form";
 import './MainPage.css';
 
 class MainPage extends Component {
