@@ -16,9 +16,9 @@
 }
 
 .skill-order-div {
-  width: 4rem;
+  width: 5rem;
   display: flex;
-  gap: 0.2rem;
+  gap: 0.8rem;
 }
 
 .skill-div > input {
@@ -41,7 +41,36 @@
   font-size: 0.9rem;
 }
 
-.skill-div button {
+.skill-div > button {
   background-color: var(--color-accent);
   color: var(--color-text);
+}
+
+.skill-order-div > div {
+  margin-right: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+button.grip-btn {
+  width: 3rem;
+  cursor: grab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  background-color: inherit;
+}
+
+.grip-btn:hover {
+  background-color: var(--input-bg);
+}
+
+.grip-btn svg {
+  height: 1.5rem;
+  width: 1.1rem;
+}
+
+.grip-btn:hover svg {
+  filter: brightness(0.7);
 }

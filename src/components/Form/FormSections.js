@@ -1,4 +1,7 @@
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Component } from "react";
+import SkillSortable from "./SkillSortable";
 
 class Personal extends Component {
   render() {
@@ -27,55 +30,80 @@ class Skills extends Component {
     super(props);
 
     this.state = {
-      skills: ["", "", ""],
+      skills: [{id: 1, name: ""},
+       {id: 2, name: ""},
+       {id: 3, name: ""}],
+      numSkill: 3,
     }
 
     this.addInput = this.addInput.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    
+    this.handleDragEnd = this.handleDragEnd.bind(this);
   }
 
   addInput() {
     this.setState({
-      skills: [...this.state.skills, ""],
+      skills: [...this.state.skills, {id: this.state.numSkill + 1, name:""}],
+      numSkill: this.state.numSkill + 1,
     });
   }
 
-  handleInputChange(e, index) {
+  handleInputChange(e, id) {
     const skillsCopy = [...this.state.skills];
-    skillsCopy[index] = e.target.value;
+    skillsCopy.forEach(skill => {
+      if (skill.id === id) {
+        skill.name = e.target.value;
+      }
+    });
 
     this.setState({
       skills: [...skillsCopy],
     });
   }
 
-  handleRemove(index) {
+  handleRemove(id) {
     const skillsCopy = [...this.state.skills];
+    const index = skillsCopy.findIndex(skill => skill.id === id);
     skillsCopy.splice(index, 1);
 
     this.setState({
       skills: [...skillsCopy],
+      numSkill: this.state.numSkill - 1,
     });
   }
-  
 
+  handleDragEnd(e) {
+    const {active, over} = e;
+
+    if (active.id !== over.id) {
+      const oldIndex = this.state.skills.findIndex(skill => skill.id === active.id);
+      const newIndex = this.state.skills.findIndex(skill => skill.id === over.id);
+
+      this.setState({ skills: arrayMove(this.state.skills, oldIndex, newIndex) });
+    }
+  }
+  
   render() {
     const skillList = this.state.skills.map((skill, index) => (
-      <div className="skill-div" draggable="true" key={index}>
-        <div className="skill-order-div">
-          <div>{index + 1}</div>
-          <div>di</div>
-        </div>
-        <input type="text" value={skill} placeholder="Skill"
-         onChange={(e) => { this.handleInputChange(e, index) }}></input>
-        <button type="button" onClick={() => {this.handleRemove(index)}}>Remove</button>
-      </div>
+      <SkillSortable skill={skill.name} index={index} key={skill.id} id={skill.id}
+        handleInputChange={this.handleInputChange}
+        handleRemove={this.handleRemove}
+        />
     ))
+
+    console.log(this.state.skills)
 
     return (
       <>
-        <div className="skill-container">{skillList}</div>
+        <div className="skill-container">
+          <DndContext collisionDetection={closestCenter} onDragEnd={this.handleDragEnd}>
+           <SortableContext items={this.state.skills} strategy={verticalListSortingStrategy}>
+            {skillList}
+           </SortableContext>
+          </DndContext>
+        </div>
         <div className="skill-add-div">
           <button type="button" className="skill-add-btn" onClick={this.addInput}>Add more</button>
         </div>
