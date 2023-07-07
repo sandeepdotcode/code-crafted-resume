@@ -22,6 +22,7 @@ class MainPage extends Component {
     this.handleCloseOverlay = this.handleCloseOverlay.bind(this);
     this.showPrevSection = this.showPrevSection.bind(this);
     this.showNextSection = this.showNextSection.bind(this);
+    this.goToSection = this.goToSection.bind(this);
   }
 
   handleSectionAdd(sectionKey) {
@@ -67,6 +68,12 @@ class MainPage extends Component {
     });
   }
 
+  goToSection(index) {
+    this.setState({
+      currentIndex: index,
+    });
+  }
+
   sortAvailable() {
     const newAvailable = [...this.state.availableSections];
     newAvailable.sort((a, b) => sections[a].id - sections[b].id);
@@ -90,7 +97,7 @@ class MainPage extends Component {
 
     return (
       <div className="main-container">
-        <Sidebar sections={sections}/>
+        <Sidebar sections={sections} added={addedSections} goToSection={this.goToSection}/>
         <Form available={availableSections} added={addedSections} currentIndex={currentIndex} 
               showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}
               sections={sections}/>

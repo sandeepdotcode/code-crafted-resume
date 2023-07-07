@@ -1,5 +1,5 @@
 .sidebar > div {
-  width: 4rem;
+  min-width: 4rem;
   min-height: 4rem;
   border-radius: 5px;
   background-color: var(--input-bg);
@@ -29,6 +29,10 @@ div.layout-div {
 
 .layout-div > div {
   height: 2.5rem;
+}
+
+.layout-btn-div {
+  display: flex;
 }
 
 .layout-btn {
