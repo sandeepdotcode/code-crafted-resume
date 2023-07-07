@@ -57,14 +57,30 @@ class MainPage extends Component {
     } else {
       this.setState({
         currentIndex: this.state.currentIndex + 1,
-      })
+      });
     }
   }
 
   showPrevSection() {
     this.setState({
       currentIndex: this.state.currentIndex - 1,
-    })
+    });
+  }
+
+  sortAvailable() {
+    const newAvailable = [...this.state.availableSections];
+    newAvailable.sort((a, b) => sections[a].id - sections[b].id);
+    this.setState({
+      availableSections: newAvailable,
+    });
+  }
+
+  sortAdded() {
+    const newAdded = [...this.state.addedSections];
+    newAdded.sort((a, b) => (sections[a].id - sections[b].id));
+    this.setState({
+      addedSections: newAdded,
+    });
   }
 
 
@@ -74,7 +90,7 @@ class MainPage extends Component {
 
     return (
       <div className="main-container">
-        <Sidebar />
+        <Sidebar sections={sections}/>
         <Form available={availableSections} added={addedSections} currentIndex={currentIndex} 
               showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}
               sections={sections}/>
