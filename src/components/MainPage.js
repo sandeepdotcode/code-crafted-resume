@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import Form from "./Form/Form";
 import './MainPage.css';
 import SectionSelect from "./Form/SectionSelect";
+import sections from "./Form/sectionData";
 
 class MainPage extends Component {
   constructor() {
@@ -75,9 +76,10 @@ class MainPage extends Component {
       <div className="main-container">
         <Sidebar />
         <Form available={availableSections} added={addedSections} currentIndex={currentIndex} 
-              showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}/>
+              showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}
+              sections={sections}/>
         { showSelectOverlay && <SectionSelect available={availableSections} handleSectionAdd={this.handleSectionAdd}
-            handleCloseOverlay={this.handleCloseOverlay}/> }
+            handleCloseOverlay={this.handleCloseOverlay} sections={sections}/> }
       </div>
     )
   }

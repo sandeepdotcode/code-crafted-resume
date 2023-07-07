@@ -1,18 +1,7 @@
 import { Component } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { Personal, Skills } from "./FormSections";
 import './Form.css';
 
-const sections = {
-  personal: {
-    name: 'Personal Details',
-    comp: <Personal />,
-  },
-  skills: {
-    name: 'Technical Skills',
-    comp: <Skills />,
-  },
-}
 
 class FormTitle extends Component {
   render() {
@@ -35,7 +24,7 @@ class FormTitle extends Component {
 
 class Form extends Component {
   render() {
-    const { currentIndex, added } = this.props;
+    const { currentIndex, added, sections } = this.props;
 
     return (
       <>
