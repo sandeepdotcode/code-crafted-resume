@@ -7,25 +7,26 @@ import SectionSelect from "./SectionSelect";
 const sections = {
   personal: {
     name: 'Personal Details',
-    comp: Personal,
+    comp: <Personal />,
   },
   skills: {
     name: 'Technical Skills',
-    comp: Skills,
+    comp: <Skills />,
   },
 }
 
 class FormTitle extends Component {
   render() {
-    const { available, added } = this.props;
+    const { available, added, currentIndex } = this.props;
 
     return (
       <div className="form-title-div">
         <h3>Personal Details</h3>
         <div className="next-btn-div">
-          { (added.length > 1) && <button type="button" className="prev-btn"><FaAngleLeft /> Back</button> }
-          { (available.length > 0) && <button type="button" className="next-btn"
-              onClick={this.props.handleShowOverlay}>Next <FaAngleRight /></button> }
+          { (currentIndex >= 1) && <button type="button" className="prev-btn"
+              onClick={this.props.showPrevSection}><FaAngleLeft /> Back</button> }
+          { (currentIndex < added.length -1 || available.length > 0) && <button type="button" className="next-btn"
+              onClick={this.props.showNextSection}>Next <FaAngleRight /></button> }
         </div>
       </div>
     )
@@ -39,14 +40,17 @@ class Form extends Component {
 
     this.state = {
       availableSections: ['skills'],
+      currentIndex: 0,
       CurrentSection: Personal,
-      addedSections: ['Personal'],
+      addedSections: ['personal'],
       showSelectOverlay: false,
     }
 
     this.handleSectionAdd = this.handleSectionAdd.bind(this);
     this.handleShowOverlay = this.handleShowOverlay.bind(this);
     this.handleCloseOverlay = this.handleCloseOverlay.bind(this);
+    this.showPrevSection = this.showPrevSection.bind(this);
+    this.showNextSection = this.showNextSection.bind(this);
   }
 
   handleSectionAdd(sectionKey) {
@@ -57,6 +61,7 @@ class Form extends Component {
       CurrentSection: sections[sectionKey].comp,
       addedSections: newAdded,
       showSelectOverlay: false,
+      currentIndex: this.state.currentIndex + 1,
     });
   }
 
@@ -75,16 +80,34 @@ class Form extends Component {
     });
   }
 
+  showNextSection() {
+    const { currentIndex, availableSections, addedSections } = this.state;
+    if (availableSections.length && currentIndex === addedSections.length - 1) {
+      this.handleShowOverlay();
+    } else {
+      this.setState({
+        currentIndex: this.state.currentIndex + 1,
+      })
+    }
+  }
+
+  showPrevSection() {
+    this.setState({
+      currentIndex: this.state.currentIndex - 1,
+    })
+  }
+
   render() {
-    const { CurrentSection, availableSections,
+    const { currentIndex, availableSections,
       addedSections, showSelectOverlay } = this.state;
 
     return (
       <>
         <div className="form-container">
-          <FormTitle available={availableSections} added={addedSections} handleShowOverlay={this.handleShowOverlay}/>
+          <FormTitle available={availableSections} added={addedSections} showNextSection={this.showNextSection}
+            showPrevSection={this.showPrevSection} currentIndex={currentIndex}/>
           <form className="form">
-            <CurrentSection />
+            {sections[addedSections[currentIndex]].comp}
           </form>
         </div>
         { showSelectOverlay && <SectionSelect available={availableSections} handleSectionAdd={this.handleSectionAdd}
