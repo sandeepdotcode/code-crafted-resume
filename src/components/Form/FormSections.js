@@ -30,7 +30,7 @@ class Skills extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = JSON.parse(localStorage.getItem('skillsState')) || {
       skills: [{id: 1, name: ""},
        {id: 2, name: ""},
        {id: 3, name: ""}],
@@ -85,7 +85,7 @@ class Skills extends Component {
       this.setState({ skills: arrayMove(this.state.skills, oldIndex, newIndex) });
     }
   }
-  
+
   render() {
     const skillList = this.state.skills.map((skill, index) => (
       <SkillSortable skill={skill.name} index={index} key={skill.id} id={skill.id}
@@ -93,8 +93,6 @@ class Skills extends Component {
         handleRemove={this.handleRemove}
         />
     ))
-
-    console.log(this.state.skills)
 
     return (
       <>
@@ -110,6 +108,10 @@ class Skills extends Component {
         </div>
       </>
     );
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem('skillsState', JSON.stringify(this.state));
   }
 }
 
