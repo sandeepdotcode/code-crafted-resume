@@ -2,6 +2,7 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Component } from "react";
 import SkillSortable from "./SkillSortable";
+// import { FaTrash } from "react-icons/fa6";
 
 class Personal extends Component {
   render() {
@@ -111,5 +112,28 @@ class Skills extends Component {
     );
   }
 }
+
+// class Links extends Component {
+//   render() {
+//     return (
+//       <>
+//         <div className="link-div">
+//           <label><span>Website</span><input type="text" placeholder="www.johnseed.com"></input></label>
+//           <button type="button" className="del-btn"><FaTrash /></button>
+//         </div>
+//         <div className="link-div">
+//           <label><span>LinkedIn</span><input type="text" placeholder="LinkedIn Id"></input></label>
+//           <input type="text" placeholder="URL"></input>
+//           <button type="button" className="del-btn"><FaTrash /></button>
+//         </div>
+//         <div className="link-div">
+//           <label><span>GitHub</span><input type="text" placeholder="LinkedIn Id"></input></label>
+//           <input type="text" placeholder="URL"></input>
+//           <button type="button" className="del-btn"><FaTrash /></button>
+//         </div>
+//       </>
+//     );
+//   }
+// }
 
 export { Personal, Skills };
