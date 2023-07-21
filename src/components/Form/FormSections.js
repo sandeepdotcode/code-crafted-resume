@@ -74,7 +74,7 @@ class Skills extends Component {
       skills: [{id: 1, name: ""},
        {id: 2, name: ""},
        {id: 3, name: ""}],
-      numSkill: 3,
+      runningId: 3,
     }
 
     this.addInput = this.addInput.bind(this);
@@ -86,8 +86,8 @@ class Skills extends Component {
 
   addInput() {
     this.setState({
-      skills: [...this.state.skills, {id: this.state.numSkill + 1, name:""}],
-      numSkill: this.state.numSkill + 1,
+      skills: [...this.state.skills, { id: this.state.runningId + 1, name:"" }],
+      runningId: this.state.runningId + 1,
     });
   }
 
@@ -111,7 +111,6 @@ class Skills extends Component {
 
     this.setState({
       skills: [...skillsCopy],
-      numSkill: this.state.numSkill - 1,
     });
   }
 
