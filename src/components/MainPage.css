@@ -14,6 +14,10 @@
   padding: 10rem 10rem 2rem 5rem;
 }
 
+.dual-mode .sidebar {
+  padding: 10rem 0 2rem 5rem;
+}
+
 /* Form styling */
 
 .form-container {
@@ -21,6 +25,11 @@
   /* padding: 10rem 10rem 10rem 25rem; */
   padding: 10rem;
   padding-left: 8rem;
+}
+
+.dual-mode .sidebar {
+  flex: 1 1 auto;
+  padding: 10rem 2rem;
 }
 
 .form-container h3 {

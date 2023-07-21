@@ -4,6 +4,7 @@ import Form from "./Form/Form";
 import './MainPage.css';
 import SectionSelect from "./Form/SectionSelect";
 import sections from "./Form/sectionData";
+import ResumeViewer from "./ResumePdf/ResumePdf";
 
 class MainPage extends Component {
   constructor() {
@@ -93,14 +94,15 @@ class MainPage extends Component {
 
   render() {
     const { availableSections, addedSections, showSelectOverlay,
-            currentIndex } = this.state;
+            currentIndex, editingMode } = this.state;
 
     return (
-      <div className="main-container">
+      <div className={editingMode === 1 ? 'main-container dual-mode' : 'main-container'}>
         <Sidebar sections={sections} added={addedSections} goToSection={this.goToSection}/>
         <Form available={availableSections} added={addedSections} currentIndex={currentIndex} 
               showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}
               sections={sections}/>
+        {editingMode === 1 ? <ResumeViewer /> : null}
         { showSelectOverlay && <SectionSelect available={availableSections} handleSectionAdd={this.handleSectionAdd}
             handleCloseOverlay={this.handleCloseOverlay} sections={sections}/> }
       </div>
