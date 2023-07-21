@@ -1,4 +1,5 @@
-import { Personal, Skills } from "./FormSections";
+import Personal from "./FormSections/Personal";
+import Skills from "./FormSections/Skills";
 import { FaBrain } from "react-icons/fa6"
 
 const sections = {
