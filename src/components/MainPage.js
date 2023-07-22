@@ -24,6 +24,7 @@ class MainPage extends Component {
     this.showPrevSection = this.showPrevSection.bind(this);
     this.showNextSection = this.showNextSection.bind(this);
     this.goToSection = this.goToSection.bind(this);
+    this.toggleEditingMode = this.toggleEditingMode.bind(this);
   }
 
   handleSectionAdd(sectionKey) {
@@ -91,6 +92,13 @@ class MainPage extends Component {
     });
   }
 
+  toggleEditingMode() {
+    const newMode = this.state.editingMode === 0 ? 1 : 0;
+    this.setState({
+      editingMode: newMode,
+    });
+  }
+
 
   render() {
     const { availableSections, addedSections, showSelectOverlay,
@@ -98,7 +106,8 @@ class MainPage extends Component {
 
     return (
       <div className={editingMode === 1 ? 'main-container dual-mode' : 'main-container'}>
-        <Sidebar sections={sections} added={addedSections} goToSection={this.goToSection}/>
+        <Sidebar sections={sections} added={addedSections} goToSection={this.goToSection}
+                  toggleEdit={this.toggleEditingMode}/>
         <Form available={availableSections} added={addedSections} currentIndex={currentIndex} 
               showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}
               sections={sections}/>

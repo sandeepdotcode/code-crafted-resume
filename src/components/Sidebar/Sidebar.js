@@ -57,7 +57,7 @@ class Sidebar extends Component {
           </button>
         </div>
         <div className="mode-btn-div">
-          <button type="button" className="mode-btn"><DualMode /></button>
+          <button type="button" className="mode-btn" onClick={this.props.toggleEdit}><DualMode /></button>
         </div>
         <div className="prev-btn-div">
           <button type="button" className="preview-btn"><FaEye></FaEye></button>
