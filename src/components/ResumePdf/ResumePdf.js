@@ -45,7 +45,7 @@ function ResumeViewer() {
 
   const renderPage = useCallback((pageNum, pdf = pdfRef) => {
     pdf && pdf.getPage(pageNum).then((page) => {
-      const viewPort = page.getViewport({scale: 1.5});
+      const viewPort = page.getViewport({scale: 1.0});
       const canvas = canvasRef.current;
       canvas.height = viewPort.height;
       canvas.width = viewPort.width;
@@ -86,7 +86,9 @@ function ResumeViewer() {
   // })
 
   return (
-    <canvas id="resume-viewer" ref={canvasRef}></canvas>
+    <div className="resume-container">
+      <canvas id="resume-viewer" ref={canvasRef}></canvas>
+    </div>
   )
 }
 
