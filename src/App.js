@@ -1,34 +1,20 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './App.css';
 import IntroPage from './components/IntroPage';
 import MainPage from './components/MainPage';
 
-class App extends Component {
-  constructor() {
-    super();
+function App() {
+  const [CurrentPage, setCurrentPage ] = useState(() => MainPage); // default should be IntroPage, changed now for dev
 
-    this.state = {
-      CurrentPage : MainPage,  // default should be IntroPage, changed now for dev
-    }
-
-    this.gotoBuilder = this.gotoBuilder.bind(this);
+  const gotoBuilder = () => {
+    setCurrentPage(() => MainPage);
   }
 
-  gotoBuilder() {
-    this.setState({
-      CurrentPage: MainPage,
-    })
-  }
-
-  render() {
-    const { CurrentPage } = this.state;
-    
-    return( 
-      <div className="App">
-       <CurrentPage getStartedFn={this.gotoBuilder} />
-      </div>
-    );
-  }
+  return( 
+    <div className="App">
+      <CurrentPage getStartedFn={gotoBuilder} />
+    </div>
+  );
 }
 
 export default App;

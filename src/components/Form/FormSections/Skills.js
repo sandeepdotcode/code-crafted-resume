@@ -1,96 +1,102 @@
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { Component } from "react";
 import SkillSortable from "./SkillSortable";
+import { useEffect, useState } from "react";
 // import { FaTrash } from "react-icons/fa6";
 
+const initialSkills = [
+  { id: 1, name: "" },
+  { id: 2, name: "" },
+  { id: 3, name: "" },
+];
 
-class Skills extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = JSON.parse(localStorage.getItem('skillsState')) || {
-      skills: [{id: 1, name: ""},
-       {id: 2, name: ""},
-       {id: 3, name: ""}],
-      runningId: 3,
+function getInitialState() {
+    if (localStorage.getItem('skillsState')) {
+      return JSON.parse(localStorage.getItem('skillsState'));
     }
+    return {
+      skills: initialSkills,
+      nextId: 4,
+    }
+}
 
-    this.addInput = this.addInput.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
-    
-    this.handleDragEnd = this.handleDragEnd.bind(this);
-  }
+function Skills() {
+  const [skillState, setSkillState] = useState(getInitialState);
 
-  addInput() {
-    this.setState({
-      skills: [...this.state.skills, { id: this.state.runningId + 1, name:"" }],
-      runningId: this.state.runningId + 1,
+  useEffect(() => {
+    localStorage.setItem('skillsState', JSON.stringify(skillState));
+  }, [ skillState ]);
+
+  const addInput = () => {
+    setSkillState({
+      ...skillState,
+      skills: [ ...skillState.skills, { id: skillState.nextId, name: "" }],
+      nextId: skillState.nextId + 1,
     });
-  }
+  };
 
-  handleInputChange(e, id) {
-    const skillsCopy = [...this.state.skills];
-    skillsCopy.forEach(skill => {
-      if (skill.id === id) {
-        skill.name = e.target.value;
-      }
+  const handleInputChange = (e, id) => {
+    const nextSkills = skillState.skills.map((skill) => {
+      if (skill.id === id)
+        return {
+          ...skill,
+          name: e.target.value,
+        }
+      return skill;
     });
 
-    this.setState({
-      skills: [...skillsCopy],
+    setSkillState({
+      ...skillState,
+      skills: nextSkills,
     });
-  }
+  };
 
-  handleRemove(id) {
-    const skillsCopy = [...this.state.skills];
-    const index = skillsCopy.findIndex(skill => skill.id === id);
-    skillsCopy.splice(index, 1);
+  const handleRemove = (id) => {
+    const nextSkills = skillState.skills.filter((skill) => skill.id !== id);
 
-    this.setState({
-      skills: [...skillsCopy],
-    });
-  }
+    setSkillState({
+      ...skillState,
+      skills: nextSkills,
+      nextId: skillState.nextId - 1,
+    })   
+  };
 
-  handleDragEnd(e) {
+  const handleDragEnd = (e) => {
     const {active, over} = e;
 
+
     if (active.id !== over.id) {
-      const oldIndex = this.state.skills.findIndex(skill => skill.id === active.id);
-      const newIndex = this.state.skills.findIndex(skill => skill.id === over.id);
+      const oldIndex = skillState.skills.findIndex(skill => skill.id === active.id);
+      const newIndex = skillState.skills.findIndex(skill => skill.id === over.id);
 
-      this.setState({ skills: arrayMove(this.state.skills, oldIndex, newIndex) });
+      setSkillState({
+        ...skillState,
+        skills: arrayMove(skillState.skills, oldIndex, newIndex),
+      });
     }
-  }
+  };
 
-  render() {
-    const skillList = this.state.skills.map((skill, index) => (
-      <SkillSortable skill={skill.name} index={index} key={skill.id} id={skill.id}
-        handleInputChange={this.handleInputChange}
-        handleRemove={this.handleRemove}
-        />
-    ))
+  const skillList = skillState.skills.map((skill, index) => (
+    <SkillSortable skill={skill.name} index={index} key={skill.id} id={skill.id}
+      handleInputChange={handleInputChange}
+      handleRemove={handleRemove}
+      />
+  ))
 
-    return (
-      <>
-        <div className="skill-container">
-          <DndContext collisionDetection={closestCenter} onDragEnd={this.handleDragEnd}>
-           <SortableContext items={this.state.skills} strategy={verticalListSortingStrategy}>
-            {skillList}
-           </SortableContext>
-          </DndContext>
-        </div>
-        <div className="skill-add-div">
-          <button type="button" className="skill-add-btn" onClick={this.addInput}>Add more</button>
-        </div>
-      </>
-    );
-  }
-
-  componentWillUnmount() {
-    localStorage.setItem('skillsState', JSON.stringify(this.state));
-  }
+  return (
+    <>
+      <div className="skill-container">
+        <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={skillState.skills} strategy={verticalListSortingStrategy}>
+          {skillList}
+        </SortableContext>
+        </DndContext>
+      </div>
+      <div className="skill-add-div">
+        <button type="button" className="skill-add-btn" onClick={addInput}>Add more</button>
+      </div>
+    </>
+  );
 }
 
 // class Links extends Component {

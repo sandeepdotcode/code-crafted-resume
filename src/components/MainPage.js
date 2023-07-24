@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 import Form from "./Form/Form";
 import './MainPage.css';
@@ -6,117 +6,91 @@ import SectionSelect from "./Form/SectionSelect";
 import sections from "./Form/sectionData";
 import ResumeViewer from "./ResumePdf/ResumePdf";
 
-class MainPage extends Component {
-  constructor() {
-    super();
+function MainPage() {
+  const [ sectionArrays, setSectionArrays ] = useState({
+    availableSections: ['skills'],
+    addedSections: ['personal'],
+  });
+  const [ currentIndex, setCurrentIndex ] = useState(0);
+  const [ editMode, setEditMode ] = useState(0);  // 0 - full page, 1 - side-by-side
+  const [ showSelectOverlay, setShowOverlay ] = useState(false);
 
-    this.state = {
-      editingMode: 0, // 0 - full page, 1 - side-by-side
-      availableSections: ['skills'],
-      currentIndex: 0,
-      addedSections: ['personal'],
-      showSelectOverlay: false,
-    }
-    
-    this.handleSectionAdd = this.handleSectionAdd.bind(this);
-    this.handleShowOverlay = this.handleShowOverlay.bind(this);
-    this.handleCloseOverlay = this.handleCloseOverlay.bind(this);
-    this.showPrevSection = this.showPrevSection.bind(this);
-    this.showNextSection = this.showNextSection.bind(this);
-    this.goToSection = this.goToSection.bind(this);
-    this.toggleEditingMode = this.toggleEditingMode.bind(this);
-  }
 
-  handleSectionAdd(sectionKey) {
-    const newAvailable = this.state.availableSections.filter(item => item !== sectionKey)
-    const newAdded = [...this.state.addedSections, sectionKey];
-    this.setState({
+  const handleSectionAdd = (sectionKey) => {
+    const newAvailable = sectionArrays.availableSections.filter(item => item !== sectionKey)
+    const newAdded = [...sectionArrays.addedSections, sectionKey];
+    setSectionArrays({
       availableSections: newAvailable,
       addedSections: newAdded,
-      showSelectOverlay: false,
-      currentIndex: this.state.currentIndex + 1,
     });
+    setShowOverlay(false);
+    setCurrentIndex(currentIndex + 1);
   }
 
-  handleShowOverlay() {
-    this.setState({
-      showSelectOverlay: true,
-    });
+  const handleShowOverlay = () => {
+    setShowOverlay(true);
   }
 
-  handleCloseOverlay(e) {
+  const handleCloseOverlay = (e) => {
     const isOverlay = e.target.classList.contains('select-overlay');
     const isCloseBtn = e.target.classList.contains('select-close-btn');
     if (!(isCloseBtn || isOverlay)) return;
-    this.setState({
-      showSelectOverlay: false,
-    });
+    setShowOverlay(false);
   }
 
-  showNextSection() {
-    const { currentIndex, availableSections, addedSections } = this.state;
+  const showNextSection = () => {
+    const { availableSections, addedSections } = sectionArrays;
     if (availableSections.length && currentIndex === addedSections.length - 1) {
-      this.handleShowOverlay();
+      handleShowOverlay();
     } else {
-      this.setState({
-        currentIndex: this.state.currentIndex + 1,
-      });
-    }
+      setCurrentIndex(currentIndex + 1);
+    };
   }
 
-  showPrevSection() {
-    this.setState({
-      currentIndex: this.state.currentIndex - 1,
-    });
+  const showPrevSection = () => {
+    setCurrentIndex(currentIndex - 1);
   }
 
-  goToSection(index) {
-    this.setState({
-      currentIndex: index,
-    });
+  const goToSection = (index) => {
+    setCurrentIndex(index);
   }
 
-  sortAvailable() {
-    const newAvailable = [...this.state.availableSections];
+  const sortAvailable = () => {
+    const newAvailable = [...sectionArrays.availableSections];
     newAvailable.sort((a, b) => sections[a].id - sections[b].id);
-    this.setState({
+    setSectionArrays({
+      ...setSectionArrays,
       availableSections: newAvailable,
-    });
+    })
   }
 
-  sortAdded() {
-    const newAdded = [...this.state.addedSections];
+  const sortAdded = () => {
+    const newAdded = [...sectionArrays.addedSections];
     newAdded.sort((a, b) => (sections[a].id - sections[b].id));
-    this.setState({
+    setSectionArrays({
+      ...sectionArrays,
       addedSections: newAdded,
-    });
+    })
   }
 
-  toggleEditingMode() {
-    const newMode = this.state.editingMode === 0 ? 1 : 0;
-    this.setState({
-      editingMode: newMode,
-    });
+  const toggleEditMode = () => {
+    const newMode = editMode === 0 ? 1 : 0;
+    setEditMode(newMode);
   }
 
 
-  render() {
-    const { availableSections, addedSections, showSelectOverlay,
-            currentIndex, editingMode } = this.state;
-
-    return (
-      <div className={editingMode === 1 ? 'main-container dual-mode' : 'main-container'}>
-        <Sidebar sections={sections} added={addedSections} goToSection={this.goToSection}
-                  toggleEdit={this.toggleEditingMode}/>
-        <Form available={availableSections} added={addedSections} currentIndex={currentIndex} 
-              showNextSection={this.showNextSection} showPrevSection={this.showPrevSection}
-              sections={sections}/>
-        {editingMode === 1 ? <ResumeViewer /> : null}
-        { showSelectOverlay && <SectionSelect available={availableSections} handleSectionAdd={this.handleSectionAdd}
-            handleCloseOverlay={this.handleCloseOverlay} sections={sections}/> }
-      </div>
-    )
-  }
+  return (
+    <div className={editMode === 1 ? 'main-container dual-mode' : 'main-container'}>
+      <Sidebar sections={sections} added={sectionArrays.addedSections} goToSection={goToSection}
+                toggleEdit={toggleEditMode}/>
+      <Form available={sectionArrays.availableSections} added={sectionArrays.addedSections} currentIndex={currentIndex} 
+            showNextSection={showNextSection} showPrevSection={showPrevSection}
+            sections={sections}/>
+      {editMode === 1 ? <ResumeViewer /> : null}
+      { showSelectOverlay && <SectionSelect available={sectionArrays.availableSections} handleSectionAdd={handleSectionAdd}
+          handleCloseOverlay={handleCloseOverlay} sections={sections}/> }
+    </div>
+  )
 }
 
 export default MainPage;
