@@ -1,30 +1,8 @@
-import { useEffect, useState } from "react";
-
-function getInitialState() {
-  if (localStorage.getItem('personalState'))
-    return JSON.parse(localStorage.getItem('personalState'));
-  return {
-    name: "",
-    title: "",
-    email: "",
-    phone: "",
-    summary: "",
-  };
-}
+import useFormStore from "../../../store";
 
 function Personal() {
-  const [ personalData, setPersonalData ] = useState(getInitialState);
-
-  useEffect(() => {
-    localStorage.setItem('personalState', JSON.stringify(personalData));
-  }, [personalData])
-
-  const handleInputChange = (e) => {
-    setPersonalData({
-      ...personalData,
-      [e.target.name]: e.target.value,
-    })
-  }
+  const personalData = useFormStore((state) => state.personal);
+  const handleInputChange = useFormStore((state) => state.changePersonal);
 
   const summaryString = `As a Principal Software Engineer, I excel in designing and developing robust and scalable software solutions ...`;
   const { name, title, email,
