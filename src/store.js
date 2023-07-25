@@ -9,6 +9,11 @@ const initialStates = {
   phone: '',
   summary: '',
   },
+  skills: [
+    { id: 1, name: "" },
+    { id: 2, name: "" },
+    { id: 3, name: "" },
+  ],
 }
 
 let store = (set, get) => ({
@@ -20,6 +25,14 @@ let store = (set, get) => ({
         [e.target.name]:  e.target.value,
       }
     }))
+  },
+  skills: initialStates.skills,
+  nextSkillId: 4,
+  setSkills: (skills) => {
+    set(() => ({ skills }))
+  },
+  setNextSkillId: (id) => {
+    set(() => ({ nextSkillId: id }))
   }
 })
 

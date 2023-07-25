@@ -1,42 +1,25 @@
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import SkillSortable from "./SkillSortable";
-import { useEffect, useState } from "react";
+import useFormStore from "../../../store";
 // import { FaTrash } from "react-icons/fa6";
 
-const initialSkills = [
-  { id: 1, name: "" },
-  { id: 2, name: "" },
-  { id: 3, name: "" },
-];
-
-function getInitialState() {
-    if (localStorage.getItem('skillsState')) {
-      return JSON.parse(localStorage.getItem('skillsState'));
-    }
-    return {
-      skills: initialSkills,
-      nextId: 4,
-    }
-}
-
 function Skills() {
-  const [skillState, setSkillState] = useState(getInitialState);
-
-  useEffect(() => {
-    localStorage.setItem('skillsState', JSON.stringify(skillState));
-  }, [ skillState ]);
+  const skills = useFormStore((state) => state.skills);
+  const nextId = useFormStore((state) => state.nextSkillId);
+  const setSkills = useFormStore((state) => state.setSkills);
+  const setNextId = useFormStore((state) => state.setNextSkillId);
 
   const addInput = () => {
-    setSkillState({
-      ...skillState,
-      skills: [ ...skillState.skills, { id: skillState.nextId, name: "" }],
-      nextId: skillState.nextId + 1,
-    });
+    setSkills([
+      ...skills,
+      { id: nextId, name: '' }
+    ]);
+    setNextId(nextId + 1);
   };
 
   const handleInputChange = (e, id) => {
-    const nextSkills = skillState.skills.map((skill) => {
+    const nextSkills = skills.map((skill) => {
       if (skill.id === id)
         return {
           ...skill,
@@ -45,20 +28,14 @@ function Skills() {
       return skill;
     });
 
-    setSkillState({
-      ...skillState,
-      skills: nextSkills,
-    });
+    setSkills(nextSkills);
   };
 
   const handleRemove = (id) => {
-    const nextSkills = skillState.skills.filter((skill) => skill.id !== id);
+    const nextSkills = skills.filter((skill) => skill.id !== id);
 
-    setSkillState({
-      ...skillState,
-      skills: nextSkills,
-      nextId: skillState.nextId - 1,
-    })   
+    setSkills(nextSkills);
+    setNextId(nextId - 1);
   };
 
   const handleDragEnd = (e) => {
@@ -66,17 +43,14 @@ function Skills() {
 
 
     if (active.id !== over.id) {
-      const oldIndex = skillState.skills.findIndex(skill => skill.id === active.id);
-      const newIndex = skillState.skills.findIndex(skill => skill.id === over.id);
+      const oldIndex = skills.findIndex(skill => skill.id === active.id);
+      const newIndex = skills.findIndex(skill => skill.id === over.id);
 
-      setSkillState({
-        ...skillState,
-        skills: arrayMove(skillState.skills, oldIndex, newIndex),
-      });
+      setSkills(arrayMove(skills, oldIndex, newIndex));
     }
   };
 
-  const skillList = skillState.skills.map((skill, index) => (
+  const skillList = skills.map((skill, index) => (
     <SkillSortable skill={skill.name} index={index} key={skill.id} id={skill.id}
       handleInputChange={handleInputChange}
       handleRemove={handleRemove}
@@ -87,7 +61,7 @@ function Skills() {
     <>
       <div className="skill-container">
         <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={skillState.skills} strategy={verticalListSortingStrategy}>
+        <SortableContext items={skills} strategy={verticalListSortingStrategy}>
           {skillList}
         </SortableContext>
         </DndContext>
