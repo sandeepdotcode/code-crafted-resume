@@ -5,23 +5,23 @@ import './MainPage.css';
 import SectionSelect from "./Form/SectionSelect";
 import sections from "./Form/sectionData";
 import ResumeViewer from "./ResumePdf/ResumePdf";
+import useFormStore from "../store";
 
 function MainPage() {
-  const [ sectionArrays, setSectionArrays ] = useState({
-    availableSections: ['skills'],
-    addedSections: ['personal'],
-  });
+  const [ sectionArrays, setSectionArrays ] = useFormStore((state) => [
+    state.sections, state.setSections
+  ]);
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ editMode, setEditMode ] = useState(0);  // 0 - full page, 1 - side-by-side
   const [ showSelectOverlay, setShowOverlay ] = useState(false);
 
 
   const handleSectionAdd = (sectionKey) => {
-    const newAvailable = sectionArrays.availableSections.filter(item => item !== sectionKey)
-    const newAdded = [...sectionArrays.addedSections, sectionKey];
+    const newAvailable = sectionArrays.available.filter(item => item !== sectionKey)
+    const newAdded = [...sectionArrays.added, sectionKey];
     setSectionArrays({
-      availableSections: newAvailable,
-      addedSections: newAdded,
+      available: newAvailable,
+      added: newAdded,
     });
     setShowOverlay(false);
     setCurrentIndex(currentIndex + 1);
@@ -39,8 +39,8 @@ function MainPage() {
   }
 
   const showNextSection = () => {
-    const { availableSections, addedSections } = sectionArrays;
-    if (availableSections.length && currentIndex === addedSections.length - 1) {
+    const { available, added } = sectionArrays;
+    if (available.length && currentIndex === added.length - 1) {
       handleShowOverlay();
     } else {
       setCurrentIndex(currentIndex + 1);
@@ -56,20 +56,20 @@ function MainPage() {
   }
 
   const sortAvailable = () => {
-    const newAvailable = [...sectionArrays.availableSections];
+    const newAvailable = [...sectionArrays.available];
     newAvailable.sort((a, b) => sections[a].id - sections[b].id);
     setSectionArrays({
-      ...setSectionArrays,
-      availableSections: newAvailable,
+      ...sectionArrays,
+      available: newAvailable,
     })
   }
 
   const sortAdded = () => {
-    const newAdded = [...sectionArrays.addedSections];
+    const newAdded = [...sectionArrays.added];
     newAdded.sort((a, b) => (sections[a].id - sections[b].id));
     setSectionArrays({
       ...sectionArrays,
-      addedSections: newAdded,
+      added: newAdded,
     })
   }
 
@@ -81,14 +81,11 @@ function MainPage() {
 
   return (
     <div className={editMode === 1 ? 'main-container dual-mode' : 'main-container'}>
-      <Sidebar sections={sections} added={sectionArrays.addedSections} goToSection={goToSection}
-                toggleEdit={toggleEditMode}/>
-      <Form available={sectionArrays.availableSections} added={sectionArrays.addedSections} currentIndex={currentIndex} 
-            showNextSection={showNextSection} showPrevSection={showPrevSection}
-            sections={sections}/>
+      <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode}/>
+      <Form currentIndex={currentIndex} showNextSection={showNextSection} showPrevSection={showPrevSection} />
       {editMode === 1 ? <ResumeViewer /> : null}
-      { showSelectOverlay && <SectionSelect available={sectionArrays.availableSections} handleSectionAdd={handleSectionAdd}
-          handleCloseOverlay={handleCloseOverlay} sections={sections}/> }
+      { showSelectOverlay && <SectionSelect handleSectionAdd={handleSectionAdd}
+        handleCloseOverlay={handleCloseOverlay} /> }
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { FaUser, FaEllipsis, FaCircle, FaEye, FaTrash } from "react-icons/fa6";
 import './Sidebar.css';
 import { useState } from "react";
+import useFormStore from "../../store";
+import sections from "../Form/sectionData";
 
 function DualMode() {
   return (
@@ -10,9 +12,7 @@ function DualMode() {
   );
 }
 
-function LayoutBtn(props) {
-  const { sections, sectionKey, editMode, goToSection, index } = props;
-  
+function LayoutBtn({ sectionKey, editMode, goToSection, index }) {
   if (sectionKey === 'personal') return null;
   return (
     <div className="layout-btn-div">
@@ -25,19 +25,20 @@ function LayoutBtn(props) {
   );
 }
 
-function Sidebar(props) {
+function Sidebar({ goToSection, toggleSideBySide }) {
   const [ editMode, setEditMode ] = useState(false);
+  const added = useFormStore((state) => state.sections.added);
 
-  const LayoutBtns = props.added.map((sectionKey, index) => (
-    <LayoutBtn sections={props.sections} sectionKey={sectionKey} 
-      key={sectionKey} index={index} goToSection={props.goToSection}/>
+  const LayoutBtns = added.map((sectionKey, index) => (
+    <LayoutBtn sectionKey={sectionKey} key={sectionKey}
+          index={index} goToSection={goToSection}/>
   ));
 
   return (
     <div className="sidebar">
       <div className="layout-div">
         <div className="layout-btn-div">
-          <button type="button" className="layout-btn" onClick={() => {props.goToSection(0)}}>
+          <button type="button" className="layout-btn" onClick={() => { goToSection(0) }}>
             <FaUser />
           </button>
         </div>
@@ -47,7 +48,7 @@ function Sidebar(props) {
         </button>
       </div>
       <div className="mode-btn-div">
-        <button type="button" className="mode-btn" onClick={props.toggleEdit}><DualMode /></button>
+        <button type="button" className="mode-btn" onClick={toggleSideBySide}><DualMode /></button>
       </div>
       <div className="prev-btn-div">
         <button type="button" className="preview-btn"><FaEye></FaEye></button>

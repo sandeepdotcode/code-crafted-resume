@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
 const initialStates = {
+  sections: ['skills'],
   personal: {
   name: '',
   title: '',
@@ -17,6 +18,13 @@ const initialStates = {
 }
 
 let store = (set, get) => ({
+  sections: {
+    added: ['personal'],
+    available: initialStates.sections,
+  },
+  setSections: ((sectionsObj) => {
+    set(() => ({ sections: sectionsObj }))
+  }),
   personal: initialStates.personal,
   changePersonal: (e) => {
     set((state) => ({

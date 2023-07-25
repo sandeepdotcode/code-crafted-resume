@@ -1,8 +1,12 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import './Form.css';
+import sections from "./sectionData";
+import useFormStore from "../../store";
 
 
-function FormTitle({ available, added, currentIndex, showPrevSection, showNextSection }) {
+function FormTitle({ currentIndex, showPrevSection, showNextSection }) {
+  const { added, available } = useFormStore((state) => state.sections);
+
   return (
     <div className="form-title-div">
       <h3>Personal Details</h3>
@@ -18,14 +22,14 @@ function FormTitle({ available, added, currentIndex, showPrevSection, showNextSe
 
 
 function Form(props) {
-  const { currentIndex, added, sections } = props;
+  const added = useFormStore((state) => state.sections.added);
 
   return (
     <>
       <div className="form-container">
         <FormTitle {...props} />
         <form className="form">
-          {sections[added[currentIndex]].comp}
+          {sections[added[props.currentIndex]].comp}
         </form>
       </div>
     </>

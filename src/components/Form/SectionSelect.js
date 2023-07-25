@@ -1,6 +1,7 @@
-function Card(props) {
-  const { sectionKey, handleClick, sections } = props;
+import useFormStore from "../../store";
+import sections from "./sectionData";
 
+function Card({ sectionKey, handleClick }) {
   return (
     <button type="button" className="select-card" onClick={handleClick}>
       <div className="select-card-top">
@@ -12,13 +13,12 @@ function Card(props) {
   );
 }
 
-function SectionSelect(props) {
-  const { available, handleSectionAdd, 
-          handleCloseOverlay, sections} = props;
+function SectionSelect({ handleSectionAdd, handleCloseOverlay }) {
+  const available = useFormStore((state) => state.sections.available);
+  console.log(available);
 
   const cards = available.map(sectionKey => (
-    <Card sectionKey={sectionKey} sections={sections}
-      key={sectionKey} handleClick={() => {handleSectionAdd(sectionKey)}}/>
+    <Card sectionKey={sectionKey} key={sectionKey} handleClick={() => {handleSectionAdd(sectionKey)}}/>
   ));
 
   return (
