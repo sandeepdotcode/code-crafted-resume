@@ -17,7 +17,7 @@
 /* Form styling */
 
 .form-container {
-  flex: 1 1 auto;
+  flex: 1 1;
   /* padding: 10rem 10rem 10rem 25rem; */
   padding: 10rem;
   padding-left: 0rem;

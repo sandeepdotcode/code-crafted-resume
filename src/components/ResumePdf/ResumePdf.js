@@ -2,6 +2,7 @@ import { Page, Text, View, Document, StyleSheet, usePDF } from "@react-pdf/rende
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import pdfjsWorker from "pdfjs-dist/webpack";
 import { useCallback, useEffect, useRef, useState } from "react";
+import useFormStore from "../../store";
 
 // pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 //   'pdfjs-dist/build/pdf.worker.min.js',
@@ -17,18 +18,22 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     flexGrow: 1
+  },
+  name: {
+    fontSize: '24px',
+    textAlign: 'left',
   }
+
 });
 
 function ResumePdf() {
+  const personal = useFormStore((state) => state.personal);
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text>Section #1</Text>
-        </View>
-        <View style={styles.section}>
-          <Text>Section #2</Text>
+        <View style={styles.name}>
+          <Text>{ personal.name }</Text>
         </View>
       </Page>
     </Document>

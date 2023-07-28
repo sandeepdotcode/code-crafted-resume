@@ -1,0 +1,27 @@
+.live-container {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  padding-right: 5rem;
+}
+
+.live-sheet {
+  aspect-ratio: 1 / 1.1412;
+  background-color: white;
+  width: 100%;
+  color: black;
+}
+
+.live-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 10%;
+  padding: 5%;
+}
+
+.live-name {
+  font-size: calc(100% + 1.5vw);
+}

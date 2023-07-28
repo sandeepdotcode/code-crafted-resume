@@ -6,6 +6,7 @@ import SectionSelect from "./Form/SectionSelect";
 import sections from "./Form/sectionData";
 import ResumeViewer from "./ResumePdf/ResumePdf";
 import useFormStore from "../store";
+import LivePreview from "./ResumePdf/LivePreview";
 
 function MainPage() {
   const [ sectionArrays, setSectionArrays ] = useFormStore((state) => [
@@ -83,7 +84,7 @@ function MainPage() {
     <div className={editMode === 1 ? 'main-container dual-mode' : 'main-container'}>
       <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode}/>
       <Form currentIndex={currentIndex} showNextSection={showNextSection} showPrevSection={showPrevSection} />
-      {editMode === 1 ? <ResumeViewer /> : null}
+      {editMode === 1 ? <LivePreview /> : null}
       { showSelectOverlay && <SectionSelect handleSectionAdd={handleSectionAdd}
         handleCloseOverlay={handleCloseOverlay} /> }
     </div>
