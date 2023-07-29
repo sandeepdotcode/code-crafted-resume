@@ -6,10 +6,11 @@ import useFormStore from "../../store";
 
 function FormTitle({ currentIndex, showPrevSection, showNextSection }) {
   const { added, available } = useFormStore((state) => state.sections);
+  const currentSection = added[currentIndex];
 
   return (
     <div className="form-title-div">
-      <h3>Personal Details</h3>
+      <h3>{ sections[currentSection].name }</h3>
       <div className="next-btn-div">
         { (currentIndex >= 1) && <button type="button" className="prev-btn"
             onClick={showPrevSection}><FaAngleLeft /> Back</button> }
