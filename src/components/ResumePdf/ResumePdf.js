@@ -3,6 +3,7 @@ import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import pdfjsWorker from "pdfjs-dist/webpack";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useFormStore from "../../store";
+import { FiDownload } from "react-icons/fi";
 
 // pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 //   'pdfjs-dist/build/pdf.worker.min.js',
@@ -50,7 +51,7 @@ function ResumeViewer() {
 
   const renderPage = useCallback((pageNum, pdf = pdfRef) => {
     pdf && pdf.getPage(pageNum).then((page) => {
-      const viewPort = page.getViewport({scale: 1.0});
+      const viewPort = page.getViewport({scale: 1.5});
       const canvas = canvasRef.current;
       canvas.height = viewPort.height;
       canvas.width = viewPort.width;
@@ -92,6 +93,7 @@ function ResumeViewer() {
 
   return (
     <div className="resume-container">
+      <button type="button" className="download-btn"><FiDownload></FiDownload> Download</button>
       <canvas id="resume-viewer" ref={canvasRef}></canvas>
     </div>
   )

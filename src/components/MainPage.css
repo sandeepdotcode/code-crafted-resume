@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   gap: 2rem;
+  overflow: hidden;
 }
 
 /* Sidebar */
@@ -152,10 +153,25 @@ label > span > span {
 
 /* Resume viewer */
 .resume-container {
-  flex: 1 1;
+  flex: 1 1 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 2.5rem;
-  padding-right: 5rem;
+  gap: 4rem;
+  padding: 5rem 5rem 5rem 0;
+  overflow: auto;
+  min-height: 100%;
+}
+
+
+.download-btn {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  color: var(--color-bg);
 }

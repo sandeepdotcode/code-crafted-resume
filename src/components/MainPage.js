@@ -8,13 +8,26 @@ import ResumeViewer from "./ResumePdf/ResumePdf";
 import useFormStore from "../store";
 import LivePreview from "./ResumePdf/LivePreview";
 
+function Editor({ currentIndex, showNextSection, showPrevSection, showPreview, showLivePreview }) {
+  if (showPreview) {
+    return null;
+  }
+  return (
+    <>
+      <Form currentIndex={currentIndex} showNextSection={showNextSection} showPrevSection={showPrevSection} />
+      { showLivePreview && <LivePreview /> }
+    </>
+  );
+}
+
 function MainPage() {
   const [ sectionArrays, setSectionArrays ] = useFormStore((state) => [
     state.sections, state.setSections
   ]);
   const [ currentIndex, setCurrentIndex ] = useState(0);
-  const [ editMode, setEditMode ] = useState(0);  // 0 - full page, 1 - side-by-side
   const [ showSelectOverlay, setShowOverlay ] = useState(false);
+  const [ showLivePreview, setShowLivePreview ] = useState(false);
+  const [ showPreview, setShowPreview ] = useState(false); // for preview & download
 
 
   const handleSectionAdd = (sectionKey) => {
@@ -72,21 +85,25 @@ function MainPage() {
       ...sectionArrays,
       added: newAdded,
     })
-  }
+  };
 
   const toggleEditMode = () => {
-    const newMode = editMode === 0 ? 1 : 0;
-    setEditMode(newMode);
-  }
+    setShowLivePreview(!showLivePreview);
+  };
 
+  const togglePreviewOn = () => {
+    setShowPreview(!showPreview);
+  };
 
   return (
-    <div className={editMode === 1 ? 'main-container dual-mode' : 'main-container'}>
-      <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode}/>
-      <Form currentIndex={currentIndex} showNextSection={showNextSection} showPrevSection={showPrevSection} />
-      {editMode === 1 ? <LivePreview /> : null}
+    <div className={showLivePreview ? 'main-container dual-mode' : 'main-container'}>
+      <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode} togglePreviewOn={togglePreviewOn}
+        showPreview={showPreview} showLivePreview={showLivePreview} />
+      <Editor currentIndex={currentIndex} showNextSection={showNextSection}
+         showPrevSection={showPrevSection} showPreview={showPreview} showLivePreview={showLivePreview}/>
       { showSelectOverlay && <SectionSelect handleSectionAdd={handleSectionAdd}
         handleCloseOverlay={handleCloseOverlay} /> }
+      { showPreview && <ResumeViewer /> }
     </div>
   )
 }

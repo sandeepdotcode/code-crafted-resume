@@ -1,15 +1,32 @@
-import { FaUser, FaEllipsis, FaCircle, FaEye, FaTrash } from "react-icons/fa6";
+import { FaUser, FaEllipsis, FaCircle, FaEye, FaTrash, FaAngleLeft } from "react-icons/fa6";
 import './Sidebar.css';
 import { useState } from "react";
 import useFormStore from "../../store";
 import sections from "../Form/sectionData";
 
-function DualMode() {
+function LiveBtn({ showLivePreview, toggleSideBySide }) {
   return (
     <>
-      <FaCircle className="dual-icon-1"></FaCircle><FaCircle className="dual-icon-2"></FaCircle>
+      <div className="mode-btn-div">
+        <button type="button" className="mode-btn" onClick={toggleSideBySide}>
+          { showLivePreview
+            ? <FaCircle></FaCircle>
+            : (<> <FaCircle className="dual-icon-1"></FaCircle><FaCircle className="dual-icon-2"></FaCircle> </>)
+          }
+        </button>
+      </div>
     </>
   );
+}
+
+function PrevBtn({ showPreview, togglePreviewOn }) {
+  return (
+    <div className="prev-btn-div">
+      <button type="button" className="preview-btn" onClick={togglePreviewOn}>
+        { showPreview ? <FaAngleLeft></FaAngleLeft> : <FaEye></FaEye> }
+      </button>
+    </div>
+  )
 }
 
 function LayoutBtn({ sectionKey, editMode, goToSection, index }) {
@@ -25,8 +42,7 @@ function LayoutBtn({ sectionKey, editMode, goToSection, index }) {
   );
 }
 
-function Sidebar({ goToSection, toggleSideBySide }) {
-  const [ editMode, setEditMode ] = useState(false);
+function LayoutController({ goToSection }) {
   const added = useFormStore((state) => state.sections.added);
 
   const LayoutBtns = added.map((sectionKey, index) => (
@@ -35,24 +51,28 @@ function Sidebar({ goToSection, toggleSideBySide }) {
   ));
 
   return (
-    <div className="sidebar">
-      <div className="layout-div">
-        <div className="layout-btn-div">
-          <button type="button" className="layout-btn" onClick={() => { goToSection(0) }}>
-            <FaUser />
-          </button>
-        </div>
-        {LayoutBtns}
-        <button type="button" className="layout-opt-btn">
-          <FaEllipsis />
+    <div className="layout-div">
+      <div className="layout-btn-div">
+        <button type="button" className="layout-btn" onClick={() => { goToSection(0) }}>
+          <FaUser />
         </button>
       </div>
-      <div className="mode-btn-div">
-        <button type="button" className="mode-btn" onClick={toggleSideBySide}><DualMode /></button>
-      </div>
-      <div className="prev-btn-div">
-        <button type="button" className="preview-btn"><FaEye></FaEye></button>
-      </div>
+      {LayoutBtns}
+      <button type="button" className="layout-opt-btn">
+        <FaEllipsis />
+      </button>
+    </div>
+  );
+}
+
+function Sidebar({ goToSection, toggleSideBySide, togglePreviewOn, showPreview, showLivePreview }) {
+  const [ editMode, setEditMode ] = useState(false);
+
+  return (
+    <div className="sidebar">
+      { !showPreview && <LayoutController goToSection={goToSection} /> }
+      { !showPreview && <LiveBtn showLivePreview={showLivePreview} toggleSideBySide={toggleSideBySide} /> }
+      <PrevBtn showPreview={showPreview} togglePreviewOn={togglePreviewOn} />
     </div>
   );
 }
