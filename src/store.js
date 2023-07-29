@@ -8,6 +8,7 @@ const initialStates = {
   title: '',
   email: '',
   phone: '',
+  address: '',
   summary: '',
   },
   skills: [

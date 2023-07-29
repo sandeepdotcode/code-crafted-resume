@@ -6,7 +6,7 @@ function Personal() {
 
   const summaryString = `As a Principal Software Engineer, I excel in designing and developing robust and scalable software solutions ...`;
   const { name, title, email,
-          phone, summary } = personalData;
+          phone, summary, address } = personalData;
 
   return (
     <>
@@ -28,6 +28,10 @@ function Personal() {
             value={phone}></input>
         </label>
       </div>
+      <label><span>Address<span> optional</span></span>
+        <input type="text" name="address" placeholder="Texas, Carolina" onChange={handleInputChange}
+          value={address}></input>
+      </label>
       <label className="summary-label"><span>Summary<span> not recommended</span></span>
         <textarea name="summary" placeholder={summaryString} onChange={handleInputChange}
           value={summary}></textarea>
