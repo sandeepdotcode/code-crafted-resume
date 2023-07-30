@@ -21,11 +21,12 @@
   flex: 1 1;
   /* padding: 10rem 10rem 10rem 25rem; */
   padding: 10rem;
-  padding-left: 0rem;
+  /* padding-left: 0rem; */
 }
 
 .dual-mode .form-container {
   padding-right: 5rem;
+  padding-left: 0rem;
 }
 
 .form-container h3 {
@@ -112,7 +113,6 @@
 }
 
 .form label {
-  min-width: 48%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

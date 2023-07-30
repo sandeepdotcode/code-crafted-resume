@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
 const initialStates = {
-  sections: ['skills'],
+  sections: ['links', 'skills'],
   personal: {
   name: '',
   title: '',
@@ -16,6 +16,11 @@ const initialStates = {
     { id: 2, name: "" },
     { id: 3, name: "" },
   ],
+  links: {
+    web: { text: '', link: '' },
+    linkedin: { text: '', link: '' },
+    github: { text: '', link: '' },
+  },
 }
 
 let store = (set, get) => ({
@@ -42,6 +47,10 @@ let store = (set, get) => ({
   },
   setNextSkillId: (id) => {
     set(() => ({ nextSkillId: id }))
+  },
+  links: initialStates.links,
+  setLinks: (links) => {
+    set(() => ( links ))
   }
 })
 
