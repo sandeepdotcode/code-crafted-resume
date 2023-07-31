@@ -6,7 +6,7 @@ function Card({ sectionKey, handleClick }) {
     <button type="button" className="select-card" onClick={handleClick}>
       <div className="select-card-top">
         {sections[sectionKey].icon}
-        <h4>{sections[sectionKey].name}</h4>
+        <h5>{sections[sectionKey].name}</h5>
       </div>
       <div className="select-card-desc"></div>
     </button>
@@ -15,7 +15,6 @@ function Card({ sectionKey, handleClick }) {
 
 function SectionSelect({ handleSectionAdd, handleCloseOverlay }) {
   const available = useFormStore((state) => state.sections.available);
-  console.log(available);
 
   const cards = available.map(sectionKey => (
     <Card sectionKey={sectionKey} key={sectionKey} handleClick={() => {handleSectionAdd(sectionKey)}}/>
