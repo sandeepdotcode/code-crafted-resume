@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
+import uniqid from "uniqid";
 
 const initialStates = {
-  sections: ['links', 'skills'],
+  sections: ['links', 'skills', 'work'],
   personal: {
   name: '',
   title: '',
@@ -21,6 +22,16 @@ const initialStates = {
     linkedin: { text: '', link: '' },
     github: { text: '', link: '' },
   },
+  work: [
+    {
+      name: '',
+      title: '',
+      duration: '',
+      address: '',
+      bullets: [{ id: uniqid(), text: ''}, { id: uniqid(), text: '' }, { id: uniqid(), text: ''}, { id: uniqid(), text: '' }],
+      // bullets: [{ id: 0, text: ''}, { id: 1, text: '' }, { id: 2, text: ''}, { id: 3, text: '' }],
+    },
+  ]
 }
 
 let store = (set, get) => ({
@@ -51,7 +62,29 @@ let store = (set, get) => ({
   links: initialStates.links,
   setLinks: (links) => {
     set(() => ( links ))
-  }
+  },
+  work: initialStates.work,
+  setWorkArray: (workArray) => {
+    set(() => ({ work: workArray }));
+  },
+  setWork: (workObj, index) => {
+    set((state) => ({ 
+      work: [
+        ...state.work.slice(0, index),
+        workObj,
+        ...state.work.slice(index + 1),
+      ],
+    }));
+  },
+  setWorkBullets: (bullets, index) => {
+    set((state) => ({
+      work: [
+        ...state.work.slice(0, index),
+        { ...state.work[index], bullets: bullets },
+        ...state.work.slice(index + 1),
+      ],
+    }));
+  },
 })
 
 const useFormStore = create(

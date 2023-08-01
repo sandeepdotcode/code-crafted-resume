@@ -40,6 +40,11 @@ h3 {
   font-size: 2rem;
 }
 
+h4 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
 button {
   appearance: none;
   border: none;
