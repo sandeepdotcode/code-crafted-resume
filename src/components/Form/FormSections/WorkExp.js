@@ -161,7 +161,7 @@ function WorkExp() {
         </div>
         <div className="work-nav">
           { currentIndex > 0
-            ? <button type="button" onClick={deleteWork}><FaTrash/></button> : null }
+            ? <button type="button" className="work-del" onClick={deleteWork}><FaTrash/></button> : null }
           { currentIndex > 0 
             ? <button type="button" onClick={() => setCurrentIndex(currentIndex - 1)}><FaAngleLeft/></button> 
             : null }

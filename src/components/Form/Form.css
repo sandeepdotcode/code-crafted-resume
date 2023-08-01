@@ -188,6 +188,25 @@ button.grip-btn {
   font-size: 0.90rem;
 }
 
+.work-nav {
+  width: 10rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.work-nav > button {
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.work-del {
+  color: var(--color-accent);
+}
+
 .work-body {
   display: flex;
   flex-wrap: wrap;
