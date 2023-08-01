@@ -3,9 +3,10 @@ import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } 
 import { useState } from "react";
 import useFormStore from "../../../store";
 import { CSS } from "@dnd-kit/utilities";
-import { FaGrip } from "react-icons/fa6";
+import { FaAngleLeft, FaAngleRight, FaGrip, FaTrash } from "react-icons/fa6";
 import uniqid from "uniqid";
 import { AddMoreBtn } from "./DRYComponents";
+import { getWorkObj } from "../../../helpers/utils";
 
 const job1Resp = [
   'Led a team of 10 developers in the successful design, development, and delivery of a scalable and high-performance SaaS platform, resulting in a 30% increase in user engagement and a 20% reduction in response time.',
@@ -131,9 +132,25 @@ function JobForm({ index }) {
 
 function WorkExp() {
   const [ currentIndex, setCurrentIndex ] = useState(0);
-  // const [ workArray, setWorkArray ] = useFormStore((state) => [
-  //   state.work, state.setWork
-  // ]);
+  const [ workArray, setWorkArray ] = useFormStore((state) => [
+    state.work, state.setWorkArray
+  ]);
+
+  const addNewWork = () => {
+    setWorkArray([
+      ...workArray,
+      getWorkObj(currentIndex + 1),
+    ]);
+    setCurrentIndex(currentIndex + 1);
+  };
+
+  const deleteWork = () => {
+    setWorkArray([
+      ...workArray.slice(0, currentIndex),
+      ...workArray.slice(currentIndex + 1),
+    ]);
+    setCurrentIndex(currentIndex - 1);
+  };
 
   return (
     <div className="work-container">
@@ -143,7 +160,16 @@ function WorkExp() {
           <span>{currentIndex === 0 ? 'Most recent first' : null}</span>
         </div>
         <div className="work-nav">
-
+          { currentIndex > 0
+            ? <button type="button" onClick={deleteWork}><FaTrash/></button> : null }
+          { currentIndex > 0 
+            ? <button type="button" onClick={() => setCurrentIndex(currentIndex - 1)}><FaAngleLeft/></button> 
+            : null }
+          { currentIndex < workArray.length - 1 && currentIndex < 3 
+            ? <button type="button" onClick={() => setCurrentIndex(currentIndex + 1)}><FaAngleRight/></button> 
+            : null }
+          { currentIndex === workArray.length - 1 && currentIndex < 3 
+            ? <button type="button" onClick={addNewWork}>+</button> : null }
         </div>
       </div>
       <JobForm index={currentIndex}/>
