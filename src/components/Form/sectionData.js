@@ -1,10 +1,11 @@
 import Links from "./FormSections/Links";
 import Personal from "./FormSections/Personal";
 import Skills from "./FormSections/Skills";
-import { FaBrain, FaFolderOpen, FaGraduationCap, FaLink, FaSuitcase } from "react-icons/fa6"
+import { FaAward, FaBrain, FaFolderOpen, FaGraduationCap, FaLink, FaSuitcase } from "react-icons/fa6"
 import WorkExp from "./FormSections/WorkExp";
 import Projects from "./FormSections/Projects";
 import Education from "./FormSections/Education";
+import Interests from "./FormSections/Interests";
 
 const sections = {
   personal: {
@@ -41,6 +42,12 @@ const sections = {
     name: 'Education',
     icon: (<FaGraduationCap />),
     comp: <Education />,
+  },
+  certInt: {
+    id: 6,
+    name: 'Certifications, Skills & Interests',
+    icon: (<FaAward />),
+    comp: <Interests />,
   },
 }
 

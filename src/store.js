@@ -97,6 +97,10 @@ let store = (set, get) => ({
       ],
     }));
   },
+  certInt: initialStates.certInt,
+  setCertInt: (certInt) => {
+    set(() => ({ certInt }));
+  },
 })
 
 const useFormStore = create(

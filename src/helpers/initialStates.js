@@ -2,7 +2,7 @@ import uniqid from "uniqid";
 import { getNewBullet } from "./utils";
 
 const initialStates = {
-  sections: ['links', 'skills', 'work', 'projects', 'education'],
+  sections: ['links', 'skills', 'work', 'projects', 'education', 'certInt'],
   personal: {
   name: '',
   title: '',
@@ -49,7 +49,7 @@ const initialStates = {
       bullets: [ getNewBullet(), getNewBullet(), getNewBullet() ],
     },
   ],
-  cert: {
+  certInt: {
     certification: '',
     skills: '',
     interests: '',
