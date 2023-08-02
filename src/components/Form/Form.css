@@ -249,3 +249,37 @@ button.grip-btn {
 .bullet-div > input {
   flex: 1 0 auto;
 }
+
+
+/* ------------------------------- Projects ----------------------------------- */
+
+.project-container {
+  height: 100%;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+.name-stack-div {
+  display: flex;
+  width: 100%;
+  gap: 1rem
+}
+
+.name-stack-div > label:first-child {
+  flex: 1.5 0;
+}
+
+.name-stack-div > label + label {
+  flex: 3 0;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}

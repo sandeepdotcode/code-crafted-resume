@@ -1,8 +1,9 @@
 import Links from "./FormSections/Links";
 import Personal from "./FormSections/Personal";
 import Skills from "./FormSections/Skills";
-import { FaBrain, FaLink, FaSuitcase } from "react-icons/fa6"
+import { FaBrain, FaFolderOpen, FaLink, FaSuitcase } from "react-icons/fa6"
 import WorkExp from "./FormSections/WorkExp";
+import Projects from "./FormSections/Projects";
 
 const sections = {
   personal: {
@@ -27,6 +28,12 @@ const sections = {
     name: 'Work Experience',
     icon: (<FaSuitcase />),
     comp: <WorkExp />,
+  },
+  projects: {
+    id: 4,
+    name: 'Projects',
+    icon: (<FaFolderOpen />),
+    comp: <Projects />
   },
 }
 

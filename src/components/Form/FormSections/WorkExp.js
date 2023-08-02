@@ -54,7 +54,6 @@ function JobForm({ index }) {
   const [ work, setWorkAt ] = useFormStore((state) => [
     state.work[index], state.setWork
   ]);
-  const setWorkArray = useFormStore((state) => state.setWorkArray)
   const bullets = useFormStore((state) => state.work[index].bullets);
   const setWorkBullets = useFormStore((state) => state.setWorkBullets);
 

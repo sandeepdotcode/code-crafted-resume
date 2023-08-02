@@ -1,9 +1,10 @@
 import { create } from "zustand";
-import { devtools, persist, createJSONStorage } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import uniqid from "uniqid";
+import { getNewBullet } from "./helpers/utils";
 
 const initialStates = {
-  sections: ['links', 'skills', 'work'],
+  sections: ['links', 'skills', 'work', 'projects'],
   personal: {
   name: '',
   title: '',
@@ -31,7 +32,31 @@ const initialStates = {
       bullets: [{ id: uniqid(), text: ''}, { id: uniqid(), text: '' }, { id: uniqid(), text: ''}, { id: uniqid(), text: '' }],
       // bullets: [{ id: 0, text: ''}, { id: 1, text: '' }, { id: 2, text: ''}, { id: 3, text: '' }],
     },
-  ]
+  ],
+  projects: [
+    {
+      name: '',
+      tech: '',
+      code: { text: '', link: '' },
+      demo: { text: '', link: '' },
+      bullets: [ getNewBullet(), getNewBullet(), getNewBullet() ],
+    }
+  ],
+  education: [
+    {
+      name: '',
+      degree: '',
+      school: '',
+      grad: '',
+      address: '',
+      bullets: [ getNewBullet(), getNewBullet(), getNewBullet() ],
+    },
+  ],
+  cert: {
+    certification: '',
+    skills: '',
+    interests: '',
+  },
 }
 
 let store = (set, get) => ({
@@ -82,6 +107,28 @@ let store = (set, get) => ({
         ...state.work.slice(0, index),
         { ...state.work[index], bullets: bullets },
         ...state.work.slice(index + 1),
+      ],
+    }));
+  },
+  projects: initialStates.projects,
+  setProjectArray: (projArray) => {
+    set(() => ({ projects: projArray }));
+  },
+  setProject: (projObj, index) => {
+    set((state) => ({
+      projects: [
+        ...state.projects.slice(0, index),
+        projObj,
+        ...state.projects.slice(index + 1),
+      ],
+    }));
+  },
+  setProjectBullets: (bullets, index) => {
+    set((state) => ({
+      projects: [
+        ...state.projects.slice(0, index),
+        { ...state.projects[index], bullets: bullets },
+        ...state.projects.slice(index + 1),
       ],
     }));
   },
