@@ -19,7 +19,7 @@ function getWorkObj(index) {
   };
 }
 
-function getProjObj(index) {
+function getProjObj() {
   const bullets = [];
   for (let i = 0; i < 3; ++i) {
     bullets.push(getNewBullet());

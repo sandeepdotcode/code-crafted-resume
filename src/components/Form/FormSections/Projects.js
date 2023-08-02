@@ -114,7 +114,7 @@ function Projects() {
   const addProject = () => {
     setProjectArray([
       ...projects,
-      getProjObj(currentIndex + 1),
+      getProjObj(),
     ]);
     setCurrentIndex(currentIndex + 1);
   };
