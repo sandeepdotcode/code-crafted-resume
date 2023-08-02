@@ -257,7 +257,7 @@ button.grip-btn {
   height: 100%;
 }
 
-.project-header {
+.project-header, .edu-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2%;
@@ -282,4 +282,17 @@ button.grip-btn {
   flex-direction: column;
   justify-content: center;
   gap: 2rem;
+}
+
+/* ------------------------------- Education ----------------------------------- */
+
+.edu-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.edu-body > label {
+  min-width: 45%;
 }

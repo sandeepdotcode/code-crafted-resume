@@ -1,63 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import uniqid from "uniqid";
-import { getNewBullet } from "./helpers/utils";
-
-const initialStates = {
-  sections: ['links', 'skills', 'work', 'projects'],
-  personal: {
-  name: '',
-  title: '',
-  email: '',
-  phone: '',
-  address: '',
-  summary: '',
-  },
-  skills: [
-    { id: 1, name: "" },
-    { id: 2, name: "" },
-    { id: 3, name: "" },
-  ],
-  links: {
-    web: { text: '', link: '' },
-    linkedin: { text: '', link: '' },
-    github: { text: '', link: '' },
-  },
-  work: [
-    {
-      name: '',
-      title: '',
-      duration: '',
-      address: '',
-      bullets: [{ id: uniqid(), text: ''}, { id: uniqid(), text: '' }, { id: uniqid(), text: ''}, { id: uniqid(), text: '' }],
-      // bullets: [{ id: 0, text: ''}, { id: 1, text: '' }, { id: 2, text: ''}, { id: 3, text: '' }],
-    },
-  ],
-  projects: [
-    {
-      name: '',
-      tech: '',
-      code: { text: '', link: '' },
-      demo: { text: '', link: '' },
-      bullets: [ getNewBullet(), getNewBullet(), getNewBullet() ],
-    }
-  ],
-  education: [
-    {
-      name: '',
-      degree: '',
-      school: '',
-      grad: '',
-      address: '',
-      bullets: [ getNewBullet(), getNewBullet(), getNewBullet() ],
-    },
-  ],
-  cert: {
-    certification: '',
-    skills: '',
-    interests: '',
-  },
-}
+import initialStates from "./helpers/initialStates";
 
 let store = (set, get) => ({
   sections: {
@@ -129,6 +72,28 @@ let store = (set, get) => ({
         ...state.projects.slice(0, index),
         { ...state.projects[index], bullets: bullets },
         ...state.projects.slice(index + 1),
+      ],
+    }));
+  },
+  education: initialStates.education,
+  setEducationArray: (eduArray) => {
+    set(() => ({ education: eduArray }));
+  },
+  setEducation: (eduObj, index) => {
+    set((state) => ({
+      education: [
+        ...state.education.slice(0, index),
+        eduObj,
+        ...state.education.slice(index + 1),
+      ],
+    }));
+  },
+  setEducationBullets: (bullets, index) => {
+    set((state) => ({
+      education: [
+        ...state.education.slice(0, index),
+        { ...state.education[index], bullets: bullets},
+        ...state.education.slice(index + 1),
       ],
     }));
   },

@@ -10,6 +10,21 @@ const placeholderData = {
       'Bullet point #1.',
       'Bullet point #2.',
       'Bullet point #3.',
+      'Bullet point #4.',
+    ],
+  },
+  education: {
+    first: [
+      'List your honors like summa cum laude or Economics Honors Society; 3.X/4.0 GPA (list only if GPA is over 3.3)',
+      'Studied abroad in City, Country during spring/fall 20YY semester (University Name).',
+      'Any other fun stuff like varsity sports, fraternity/sorority, or something that gives you a little color.',
+      'Bullet point #4.',
+    ],
+    later: [
+      'Bullet point #1',
+      'Bullet point #2.',
+      'Bullet point #3.',
+      'Bullet point #4.',
     ],
   },
 };

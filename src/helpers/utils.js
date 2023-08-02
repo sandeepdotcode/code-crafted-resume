@@ -34,4 +34,20 @@ function getProjObj() {
   };
 }
 
-export { getNewBullet, getWorkObj, getProjObj };
+function getEduObj() {
+  const bullets = [];
+  for (let i = 0; i < 3; ++i) {
+    bullets.push(getNewBullet());
+  }
+
+  return {
+    name: '',
+    degree: '',
+    grad: '',
+    address: '',
+    bullets,
+  };
+}
+
+export { getNewBullet, getWorkObj, getProjObj,
+  getEduObj };
