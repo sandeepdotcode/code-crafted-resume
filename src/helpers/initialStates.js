@@ -1,5 +1,5 @@
 import uniqid from "uniqid";
-import { getNewBullet } from "./utils";
+import { getBulletList, getNewBullet } from "./utils";
 
 const initialStates = {
   sections: ['links', 'skills', 'work', 'projects', 'education', 'certInt'],
@@ -11,7 +11,12 @@ const initialStates = {
   address: '',
   summary: '',
   },
-  skills: [
+  skills: {
+    lang: getBulletList(3),
+    frame: getBulletList(3),
+    tools: getBulletList(3),
+  },
+  simpleSkills: [
     { id: 1, name: "" },
     { id: 2, name: "" },
     { id: 3, name: "" },

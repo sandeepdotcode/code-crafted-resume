@@ -19,13 +19,21 @@ let store = (set, get) => ({
       }
     }))
   },
-  skills: initialStates.skills,
-  nextSkillId: 4,
-  setSkills: (skills) => {
-    set(() => ({ skills }))
+  isSimpleSkills: false,
+  setIsSimple: (isSimpleSkills) => {
+    set(() => ({ isSimpleSkills }));
   },
-  setNextSkillId: (id) => {
-    set(() => ({ nextSkillId: id }))
+  skills: initialStates.skills,
+  setSkills: (skills) => {
+    set(() => ({ skills }));
+  },
+  simpleSkills: initialStates.simpleSkills,
+  nextSimpleSkillId: 4,
+  setSimpleSkills: (simpleSkills) => {
+    set(() => ({ simpleSkills }))
+  },
+  setNextSimpleSkillId: (id) => {
+    set(() => ({ nextSimpleSkillId: id }))
   },
   links: initialStates.links,
   setLinks: (links) => {

@@ -46,6 +46,25 @@ div.link-div > label {
 
 /* --------------------------------- Skills ----------------------------------- */
 
+.skill-nav-div {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 2rem;
+  height: 2rem;
+}
+
+.skill-nav-div button {
+  height: 1.5rem;
+}
+
+div.skill-toggle > label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  min-width: 10rem;
+}
+
 .skill-container {
   display: flex;
   flex-direction: column;
@@ -257,10 +276,12 @@ button.grip-btn {
   height: 100%;
 }
 
-.project-header, .edu-header {
+.project-header, .edu-header,
+.skill-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2%;
+  width: 100%;
 }
 
 .name-stack-div {

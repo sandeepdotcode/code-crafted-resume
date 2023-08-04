@@ -4,6 +4,14 @@ function getNewBullet() {
   return { id: uniqid(), text: '' };
 }
 
+function getBulletList(num) {
+  const list = [];
+  for (let i = 0; i < num; ++i) {
+    list.push(getNewBullet());
+  }
+  return list;
+}
+
 function getWorkObj(index) {
   const bullets =[];
   for (let i = 0; i < 4 - index; ++i) {
@@ -49,5 +57,5 @@ function getEduObj() {
   };
 }
 
-export { getNewBullet, getWorkObj, getProjObj,
-  getEduObj };
+export { getNewBullet, getBulletList, getWorkObj,
+  getProjObj, getEduObj };
