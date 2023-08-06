@@ -4,6 +4,9 @@ import pdfjsWorker from "pdfjs-dist/webpack";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useFormStore from "../../store";
 import { FiDownload } from "react-icons/fi";
+import { saveAs } from "file-saver";
+import Header from "./PdfSections/PdfHeader";
+
 
 // pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 //   'pdfjs-dist/build/pdf.worker.min.js',
@@ -12,8 +15,7 @@ import { FiDownload } from "react-icons/fi";
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4', 
+    padding: 30,
   },
   section: {
     margin: 10,
@@ -29,13 +31,12 @@ const styles = StyleSheet.create({
 
 function ResumePdf() {
   const personal = useFormStore((state) => state.personal);
+  const links = useFormStore((state) => state.links);
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.name}>
-          <Text>{ personal.name }</Text>
-        </View>
+        <Header personal={personal} links={links}/>
       </Page>
     </Document>
   );
@@ -79,21 +80,13 @@ function ResumeViewer() {
     }
   }, [instance]);
 
-  // if (instance.loading) {
-  //   return (<div>Loading ...</div>);
-  // }
-
-  // pdfjsLib.getDocument(instance.url).promise.then((doc) => {
-  //   console.log(doc._pdfInfo);
-
-  //   doc.getPage(1).then((page) => {
-      
-  //   })
-  // })
+  const downloadPdf = () => {
+    saveAs(instance.url, "resume.pdf");
+  }
 
   return (
     <div className="resume-container">
-      <button type="button" className="download-btn"><FiDownload></FiDownload> Download</button>
+      <button type="button" className="download-btn" onClick={downloadPdf}><FiDownload></FiDownload> Download</button>
       <canvas id="resume-viewer" ref={canvasRef}></canvas>
     </div>
   )
