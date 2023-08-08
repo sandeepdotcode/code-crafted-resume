@@ -1,16 +1,19 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import initialStates from "./helpers/initialStates";
+import sampleData from "./helpers/sampleData";
 
 let store = (set, get) => ({
-  sections: {
-    added: ['personal'],
-    available: initialStates.sections,
-  },
-  setSections: ((sectionsObj) => {
-    set(() => ({ sections: sectionsObj }))
+  ...initialStates,
+  setIsClear: ((isClear) => {
+    set(() => ({ isClear }));
   }),
-  personal: initialStates.personal,
+  setSections: ((sectionsObj) => {
+    set(() => ({ sections: sectionsObj }));
+  }),
+  setPersonal: (personal) => {
+    set(() => ({ personal }));
+  },
   changePersonal: (e) => {
     set((state) => ({
       personal: {
@@ -19,27 +22,21 @@ let store = (set, get) => ({
       }
     }))
   },
-  isSimpleSkills: false,
   setIsSimple: (isSimpleSkills) => {
     set(() => ({ isSimpleSkills }));
   },
-  skills: initialStates.skills,
   setSkills: (skills) => {
     set(() => ({ skills }));
   },
-  simpleSkills: initialStates.simpleSkills,
-  nextSimpleSkillId: 4,
   setSimpleSkills: (simpleSkills) => {
     set(() => ({ simpleSkills }))
   },
   setNextSimpleSkillId: (id) => {
     set(() => ({ nextSimpleSkillId: id }))
   },
-  links: initialStates.links,
   setLinks: (links) => {
     set(() => ( links ))
   },
-  work: initialStates.work,
   setWorkArray: (workArray) => {
     set(() => ({ work: workArray }));
   },
@@ -61,7 +58,6 @@ let store = (set, get) => ({
       ],
     }));
   },
-  projects: initialStates.projects,
   setProjectArray: (projArray) => {
     set(() => ({ projects: projArray }));
   },
@@ -83,7 +79,6 @@ let store = (set, get) => ({
       ],
     }));
   },
-  education: initialStates.education,
   setEducationArray: (eduArray) => {
     set(() => ({ education: eduArray }));
   },
@@ -105,9 +100,15 @@ let store = (set, get) => ({
       ],
     }));
   },
-  certInt: initialStates.certInt,
   setCertInt: (certInt) => {
     set(() => ({ certInt }));
+  },
+
+  resetData: () => {
+    set(initialStates);
+  },
+  setSampleData: () => {
+    set(sampleData);
   },
 })
 

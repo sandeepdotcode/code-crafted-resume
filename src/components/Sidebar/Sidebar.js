@@ -3,6 +3,7 @@ import './Sidebar.css';
 import { useState } from "react";
 import useFormStore from "../../store";
 import sections from "../Form/sectionData";
+import FillAndClear from "./fillAndClear";
 
 function LiveBtn({ showLivePreview, toggleSideBySide }) {
   return (
@@ -73,6 +74,7 @@ function Sidebar({ goToSection, toggleSideBySide, togglePreviewOn, showPreview, 
       { !showPreview && <LayoutController goToSection={goToSection} /> }
       { !showPreview && <LiveBtn showLivePreview={showLivePreview} toggleSideBySide={toggleSideBySide} /> }
       <PrevBtn showPreview={showPreview} togglePreviewOn={togglePreviewOn} />
+      { !showPreview && <FillAndClear goToSection={goToSection}/> }
     </div>
   );
 }

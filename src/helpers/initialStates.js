@@ -1,8 +1,11 @@
-import uniqid from "uniqid";
 import { getBulletList, getNewBullet } from "./utils";
 
 const initialStates = {
-  sections: ['links', 'skills', 'work', 'projects', 'education', 'certInt'],
+  isClear: true,
+   sections: {
+    added: ['personal'],
+    available: ['links', 'skills', 'work', 'projects', 'education', 'certInt'],
+  },
   personal: {
   name: '',
   title: '',
@@ -11,11 +14,13 @@ const initialStates = {
   address: '',
   summary: '',
   },
+  isSimpleSkills: false,
   skills: {
     lang: getBulletList(3),
     frame: getBulletList(3),
     tools: getBulletList(3),
   },
+  nextSimpleSkillId: 4,
   simpleSkills: [
     { id: 1, name: "" },
     { id: 2, name: "" },
@@ -32,7 +37,7 @@ const initialStates = {
       title: '',
       duration: '',
       address: '',
-      bullets: [{ id: uniqid(), text: ''}, { id: uniqid(), text: '' }, { id: uniqid(), text: ''}, { id: uniqid(), text: '' }],
+      bullets: [ getNewBullet(), getNewBullet(), getNewBullet(), getNewBullet() ],
       // bullets: [{ id: 0, text: ''}, { id: 1, text: '' }, { id: 2, text: ''}, { id: 3, text: '' }],
     },
   ],

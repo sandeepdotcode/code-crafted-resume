@@ -1,4 +1,18 @@
 const placeholderData = {
+  work: {
+    first: [
+      'Led a team of 10 developers in the successful design, development, and delivery of a scalable and high-performance SaaS platform, resulting in a 30% increase in user engagement and a 20% reduction in response time.',
+      `Architected and implemented a microservices-based architecture using Node.js and Docker, resulting in a more flexible and maintainable system and enabling seamless integration with third-party services.`,
+      'Core responsibility #3. Pretend this is where they stop reading. First 3 things should be most impressive',
+      'Core responsibility #4.'
+    ],
+    later: [
+      'Core responsibility #1.',
+      'Core responsibility #2.',
+      'Core responsibility #3.',
+      'Core responsibility #4.',
+    ],
+  },
   projects: {
     first: [
       'Developed a user-friendly web application for travel planning, allowing users to create and manage their itineraries.',
