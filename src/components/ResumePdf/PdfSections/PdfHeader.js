@@ -1,37 +1,48 @@
 import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
-import { GrMail } from "react-icons/gr"
+
 
 const styles = StyleSheet.create({
+  header: {
+    borderBottom: '0.5px solid black',
+    paddingBottom: 3,
+  },
   name: {
-    fontSize: '24px',
+    fontSize: 24,
+    fontFamily: 'Garamond',
+    fontWeight: 700,
   },
   title: {
     fontSize: '12px',
   },
   links: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: '10px',
     fontSize: '12px',
   },
 })
 
-function Links({ email, web }) {
+function Links({ email, links }) {
   return (
     <View style={styles.links}>
-      <GrMail />
       <Text><Link src={'mailto:' + email }>{ email }</Link></Text>
-      <Text><Link src={web.link}>{ web.text }</Link></Text>
+      <Text><Link src={ links.web.link }>{ links.web.text }</Link></Text>
+      <Text><Link src={ links.linkedin.link }>{ links.linkedin.text }</Link></Text>
+      <Text><Link src={ links.github.link }>{ links.github.text }</Link></Text>
     </View>
   )
 }
 
 function Header({ personal, links }) {
   return (
-    <>
+    <View style={styles.header}>
       <View>
         <Text style={styles.name}>{ personal.name }</Text>
         <Text style={styles.title}>{ personal.title }</Text>
       </View>
-      <Links email={personal.email} web={links.web}/>
-    </>
+      <Links email={personal.email} links={links} />
+    </View>
   )
 }
 

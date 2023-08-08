@@ -1,4 +1,4 @@
-import { Page, Text, View, Document, StyleSheet, usePDF } from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet, usePDF, Font } from "@react-pdf/renderer";
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import pdfjsWorker from "pdfjs-dist/webpack";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -6,7 +6,18 @@ import useFormStore from "../../store";
 import { FiDownload } from "react-icons/fi";
 import { saveAs } from "file-saver";
 import Header from "./PdfSections/PdfHeader";
+import garamond from '../../assets/garamond-font/cormorant-garamond-v16-latin-regular.ttf';
+import garamondItalic from '../../assets/garamond-font/cormorant-garamond-v16-latin-italic.ttf';
+import garamondBold from '../../assets/garamond-font/cormorant-garamond-v16-latin-700.ttf';
 
+Font.register({ 
+  family: 'Garamond',
+  fonts: [
+    { src: garamond },
+    { src: garamondItalic, fontStyle: 'italic' },
+    { src: garamondBold, fontWeight: 700 },
+  ]
+})
 
 // pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 //   'pdfjs-dist/build/pdf.worker.min.js',
@@ -16,17 +27,15 @@ import Header from "./PdfSections/PdfHeader";
 const styles = StyleSheet.create({
   page: {
     padding: 30,
+    fontFamily: 'Garamond',
+    display: 'flex',
+    flexDirection: 'column',
   },
   section: {
     margin: 10,
     padding: 10,
     flexGrow: 1
   },
-  name: {
-    fontSize: '24px',
-    textAlign: 'left',
-  }
-
 });
 
 function ResumePdf() {
