@@ -3,7 +3,7 @@ import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   header: {
-    borderBottom: '0.5px solid black',
+    borderBottom: '0.5 solid #000',
     paddingBottom: 3,
   },
   name: {

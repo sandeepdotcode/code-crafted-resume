@@ -9,6 +9,7 @@ import Header from "./PdfSections/PdfHeader";
 import garamond from '../../assets/garamond-font/cormorant-garamond-v16-latin-regular.ttf';
 import garamondItalic from '../../assets/garamond-font/cormorant-garamond-v16-latin-italic.ttf';
 import garamondBold from '../../assets/garamond-font/cormorant-garamond-v16-latin-700.ttf';
+import PdfSkills from "./PdfSections/PdfSkills";
 
 Font.register({ 
   family: 'Garamond',
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Garamond',
     display: 'flex',
     flexDirection: 'column',
+    gap: 5,
   },
   section: {
     margin: 10,
@@ -39,13 +41,18 @@ const styles = StyleSheet.create({
 });
 
 function ResumePdf() {
+  const added = useFormStore((state) => state.sections.added);
   const personal = useFormStore((state) => state.personal);
   const links = useFormStore((state) => state.links);
+  const [ isSimpleSkills, skills, simpleSkills ] = useFormStore((state) => [
+    state.isSimpleSkills, state.skills, state.simpleSkills
+  ]);
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Header personal={personal} links={links}/>
+        { added.includes('skills') && <PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/>}
       </Page>
     </Document>
   );
