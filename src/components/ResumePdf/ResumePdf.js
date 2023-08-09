@@ -13,6 +13,7 @@ import PdfSkills from "./PdfSections/PdfSkills";
 import PdfWork from "./PdfSections/PdfWork";
 import PdfProjects from "./PdfSections/PdfProjects";
 import PdfEdu from "./PdfSections/PdfEdu";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 Font.register({ 
   family: 'Garamond',
@@ -67,6 +68,8 @@ function ResumePdf() {
   );
 }
 
+let NUM_PAGES = 1;
+
 function ResumeViewer() {
   const [instance, updateInstance] = usePDF({ document: ResumePdf() });
   pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
@@ -98,6 +101,7 @@ function ResumeViewer() {
     if(!instance.loading) {
       const loadingTask = pdfjsLib.getDocument(instance.url);
       loadingTask.promise.then((loadedPdf) => {
+        NUM_PAGES = loadedPdf._pdfInfo.numPages;
         setPdfRef(loadedPdf);
       }, function (reason) {
         console.error(reason);
@@ -111,8 +115,29 @@ function ResumeViewer() {
 
   return (
     <div className="resume-container">
-      <button type="button" className="download-btn" onClick={downloadPdf}><FiDownload></FiDownload> Download</button>
+      <div className="resume-top-nav">
+        <button type="button" onClick={() => { setCurrentPage(currentPage - 1) }} 
+          disabled={currentPage < 2 ? true : false} className="resume-nav-btn">
+          <FaAngleLeft />
+        </button>
+        <button type="button" className="download-btn" onClick={downloadPdf}><FiDownload></FiDownload> Download</button>
+        <button type="button" onClick={() => { setCurrentPage(currentPage + 1) }} 
+          disabled={currentPage === NUM_PAGES ? true : false} className="resume-nav-btn">
+          <FaAngleRight />
+        </button>
+      </div>
       <canvas id="resume-viewer" ref={canvasRef}></canvas>
+      <div className="resume-nav-div">
+        <button type="button" onClick={() => { setCurrentPage(currentPage - 1) }} 
+          disabled={currentPage < 2 ? true : false} className="resume-nav-btn">
+          <FaAngleLeft /> Previous
+        </button>
+        <div className="page-indicator">Page { currentPage } of { NUM_PAGES }</div>
+        <button type="button" onClick={() => { setCurrentPage(currentPage + 1) }} 
+          disabled={currentPage === NUM_PAGES ? true : false} className="resume-nav-btn">
+          Next <FaAngleRight />
+        </button>
+      </div>
     </div>
   )
 }

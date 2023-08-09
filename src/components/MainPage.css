@@ -176,3 +176,26 @@ label > span > span {
   gap: 0.2rem;
   color: var(--color-bg);
 }
+
+.resume-nav-div, .resume-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  left: -0.20rem;
+  width: 58%;
+}
+
+.resume-nav-btn {
+  display: flex;
+  height: 2rem;
+  width: 6rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  gap: 0.2rem;
+}
+
+.resume-top-nav .resume-nav-btn {
+  width: 3rem;
+}
