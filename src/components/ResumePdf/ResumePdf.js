@@ -58,6 +58,7 @@ function ResumePdf() {
         <Header personal={personal} links={links}/>
         { added.includes('skills') && <PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/> }
         { added.includes('work') && <PdfWork workArray={workArray} /> }
+        { added.includes('projects') && <PdfProjects projectsArray={projectsArray} /> }
       </Page>
     </Document>
   );
