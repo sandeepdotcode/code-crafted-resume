@@ -49,8 +49,6 @@ function Skills({ lang, frame, tools }) {
   const frames = frame.map((frameObj, index) => (<SkillItem text={frameObj.text} index={index} />));
   const toolss = tools.map((tool, index) => (<SkillItem text={tool.text} index={index} />));
 
-  console.log(langs.length)
-
   return (
     <View style={styles.skillBlock}>
       <View style={styles.skillLine}>
@@ -80,7 +78,6 @@ function SimpleSkills({ simpleSkills }) {
 }
 
 function PdfSkills({ isSimpleSkills, skills, simpleSkills }) {
-  console.log(isSimpleSkills)
   return (
     <View>
       <View style={styles.heading}><Text>TECHNICAL SKILLS</Text></View>

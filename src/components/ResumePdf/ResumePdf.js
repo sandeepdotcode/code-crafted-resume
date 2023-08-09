@@ -10,6 +10,8 @@ import garamond from '../../assets/garamond-font/cormorant-garamond-v16-latin-re
 import garamondItalic from '../../assets/garamond-font/cormorant-garamond-v16-latin-italic.ttf';
 import garamondBold from '../../assets/garamond-font/cormorant-garamond-v16-latin-700.ttf';
 import PdfSkills from "./PdfSections/PdfSkills";
+import PdfWork from "./PdfSections/PdfWork";
+import PdfProjects from "./PdfSections/PdfProjects";
 
 Font.register({ 
   family: 'Garamond',
@@ -47,12 +49,15 @@ function ResumePdf() {
   const [ isSimpleSkills, skills, simpleSkills ] = useFormStore((state) => [
     state.isSimpleSkills, state.skills, state.simpleSkills
   ]);
+  const workArray = useFormStore((state) => state.work);
+  const projectsArray = useFormStore((state) => state.projects);
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Header personal={personal} links={links}/>
-        { added.includes('skills') && <PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/>}
+        { added.includes('skills') && <PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/> }
+        { added.includes('work') && <PdfWork workArray={workArray} /> }
       </Page>
     </Document>
   );
