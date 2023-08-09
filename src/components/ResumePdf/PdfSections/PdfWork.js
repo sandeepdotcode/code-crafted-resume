@@ -2,25 +2,16 @@ import { StyleSheet, View, Text } from "@react-pdf/renderer";
 import commonStyles from "./commonStyles";
 import Bullet from "./Bullet";
 
-const styles = StyleSheet.create({
-  workHeaderLine: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    fontSize: 12,
-  },
-})
-
 function WorkItem({ work }) {
   const bullets = work.bullets.map((bullet) => (<Bullet bullet={bullet} key={bullet.id}/>));
 
   return (
     <>
-      <View style={{...styles.workHeaderLine, fontWeight: 700}}>
+      <View style={{...commonStyles.workHeaderLine, fontWeight: 700}}>
         <Text>{ work.name }</Text>
         <Text>{ work.duration }</Text>
       </View>
-      <View style={{...styles.workHeaderLine, fontStyle: 'italic' }}>
+      <View style={{...commonStyles.workHeaderLine, fontStyle: 'italic' }}>
         <Text>{ work.title }</Text>
         <Text>{ work.address }</Text>
       </View>

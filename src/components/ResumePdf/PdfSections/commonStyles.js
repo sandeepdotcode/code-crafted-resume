@@ -13,6 +13,12 @@ const commonStyles = StyleSheet.create({
     borderBottom: '0.5 solid #000',
     marginBottom: 5,
   },
+  workHeaderLine: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    fontSize: 12,
+  },
 });
 
 export default commonStyles;

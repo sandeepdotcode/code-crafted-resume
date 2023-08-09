@@ -12,6 +12,7 @@ import garamondBold from '../../assets/garamond-font/cormorant-garamond-v16-lati
 import PdfSkills from "./PdfSections/PdfSkills";
 import PdfWork from "./PdfSections/PdfWork";
 import PdfProjects from "./PdfSections/PdfProjects";
+import PdfEdu from "./PdfSections/PdfEdu";
 
 Font.register({ 
   family: 'Garamond',
@@ -51,6 +52,7 @@ function ResumePdf() {
   ]);
   const workArray = useFormStore((state) => state.work);
   const projectsArray = useFormStore((state) => state.projects);
+  const eduArray = useFormStore((state) => state.education);
 
   return (
     <Document>
@@ -59,6 +61,7 @@ function ResumePdf() {
         { added.includes('skills') && <PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/> }
         { added.includes('work') && <PdfWork workArray={workArray} /> }
         { added.includes('projects') && <PdfProjects projectsArray={projectsArray} /> }
+        { added.includes('education') && <PdfEdu eduArray={eduArray} /> }
       </Page>
     </Document>
   );
