@@ -14,6 +14,7 @@ import PdfWork from "./PdfSections/PdfWork";
 import PdfProjects from "./PdfSections/PdfProjects";
 import PdfEdu from "./PdfSections/PdfEdu";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import PdfCertInt from "./PdfSections/PdfCertInt";
 
 Font.register({ 
   family: 'Garamond',
@@ -54,6 +55,7 @@ function ResumePdf() {
   const workArray = useFormStore((state) => state.work);
   const projectsArray = useFormStore((state) => state.projects);
   const eduArray = useFormStore((state) => state.education);
+  const certInt = useFormStore((state) => state.certInt);
 
   return (
     <Document>
@@ -63,6 +65,7 @@ function ResumePdf() {
         { added.includes('work') && <PdfWork workArray={workArray} /> }
         { added.includes('projects') && <PdfProjects projectsArray={projectsArray} /> }
         { added.includes('education') && <PdfEdu eduArray={eduArray} /> }
+        { added.includes('certInt') && <PdfCertInt certInt={certInt} /> }
       </Page>
     </Document>
   );

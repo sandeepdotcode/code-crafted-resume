@@ -5,6 +5,7 @@ const commonStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     marginTop: 2,
+    marginBottom: 2,
   },
   heading: {
     fontSize: 12,
@@ -19,6 +20,15 @@ const commonStyles = StyleSheet.create({
     justifyContent: 'space-between',
     fontSize: 12,
   },
+  boldText: {
+    fontSize: 12,
+    fontWeight: 700,
+  },
+  normalTextLine: {
+    fontSize: 12,
+    display: 'flex',
+    flexDirection: 'row',
+  }
 });
 
 export default commonStyles;
