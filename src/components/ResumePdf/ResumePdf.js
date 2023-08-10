@@ -57,15 +57,30 @@ function ResumePdf() {
   const eduArray = useFormStore((state) => state.education);
   const certInt = useFormStore((state) => state.certInt);
 
+  const pdfSections = added.map((section, index) => {
+    switch (section) {
+      case "skills":
+        return (<PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/>);
+      case 'work':
+        return (<PdfWork workArray={workArray} />);
+      case 'projects':
+        return (<PdfProjects projectsArray={projectsArray} />);
+      case 'education':
+        return (<PdfEdu eduArray={eduArray} />);
+      case 'certInt':
+        return (<PdfCertInt certInt={certInt} />);
+      case 'personal':
+      case 'links':
+      default:
+        return null;
+    }
+  });
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Header personal={personal} links={links}/>
-        { added.includes('skills') && <PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/> }
-        { added.includes('work') && <PdfWork workArray={workArray} /> }
-        { added.includes('projects') && <PdfProjects projectsArray={projectsArray} /> }
-        { added.includes('education') && <PdfEdu eduArray={eduArray} /> }
-        { added.includes('certInt') && <PdfCertInt certInt={certInt} /> }
+        { pdfSections }
       </Page>
     </Document>
   );
