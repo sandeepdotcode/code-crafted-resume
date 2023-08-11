@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "@react-pdf/renderer";
+import { View, Text } from "@react-pdf/renderer";
 import commonStyles from "./commonStyles";
 import Bullet from "./Bullet";
 
@@ -21,7 +21,7 @@ function WorkItem({ work }) {
 }
 
 function PdfWork({ workArray }) {
-  const workItems = workArray.map((work) => (<WorkItem work={work} />));
+  const workItems = workArray.map((work, index) => (<WorkItem work={work} key={index} />));
 
   return (
     <View>

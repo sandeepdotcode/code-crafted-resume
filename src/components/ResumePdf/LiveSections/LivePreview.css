@@ -1,27 +1,117 @@
+@import url(../../../assets/garamond-font/garamond.css);
+
 .live-container {
   flex: 1 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 2.5rem;
   padding-right: 5rem;
 }
 
 .live-sheet {
-  aspect-ratio: 1 / 1.1412;
+  aspect-ratio: 1.1412;
   background-color: white;
   width: 100%;
   color: black;
+  padding: 3vh;
+  font-family: 'Cormorant Garamond';
+  font-size: 0.725vw;
+  overflow: scroll;
 }
 
 .live-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 10%;
-  padding: 5%;
+  /* height: 12%; */
+  border-bottom: 0.5px solid black;
+}
+
+.live-header > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65vw;
+}
+
+.live-header > div > * + * {
+  margin-left: 2rem;
 }
 
 .live-name {
-  font-size: calc(100% + 1.5vw);
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+
+.live-heading {
+  font-weight: 700;
+  border-bottom: 0.5px solid black;
+  margin-bottom: 0.3vw;
+}
+
+/*------------------ Live Skills ------------------------*/
+
+.live-skill-subheading {
+  font-weight: 700;
+}
+
+.live-skill-line {
+  display: flex;
+}
+
+.live-skill-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.1vw;
+  margin-bottom: 0.1vw;
+}
+
+.live-simple-skills {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 0.1vw;
+}
+
+/*------------------ Live Skills ------------------------*/
+
+.live-sub-head-1 {
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+
+.live-sub-head-2 {
+  font-style: italic;
+  display: flex;
+  justify-content: space-between;
+}
+
+.live-bullet-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1vw;
+  margin-bottom: 0.1vw;
+}
+
+.live-bullet {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.3vw;
+  margin-left: 0.1vw;
+}
+
+/*------------------ Live Skills ------------------------*/
+
+.live-proj-title {
+  font-weight: 700;
+}
+
+.live-proj-stack {
+  font-style: italic;
+}
+
+.live-proj-links {
+  display: flex;
+  margin-bottom: 0.1vw;
+  gap: 0.7vw;
 }

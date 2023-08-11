@@ -161,7 +161,7 @@ label > span > span {
   gap: 4rem;
   padding: 5rem 5rem 5rem 0;
   overflow: auto;
-  min-height: 100%;
+  min-height: 1.5vh;
 }
 
 
@@ -194,6 +194,10 @@ label > span > span {
   align-items: center;
   border-radius: 3px;
   gap: 0.2rem;
+}
+
+#resume-viewer {
+  flex-basis: 90%;
 }
 
 .resume-top-nav .resume-nav-btn {
