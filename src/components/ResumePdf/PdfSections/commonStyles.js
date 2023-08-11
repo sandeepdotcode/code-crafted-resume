@@ -28,7 +28,10 @@ const commonStyles = StyleSheet.create({
     fontSize: 12,
     display: 'flex',
     flexDirection: 'row',
-  }
+  },
+  link: {
+    color: '#0a52cf',
+  },
 });
 
 export default commonStyles;

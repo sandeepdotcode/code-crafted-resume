@@ -1,4 +1,5 @@
 import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
+import commonStyles from "./commonStyles";
 
 
 const styles = StyleSheet.create({
@@ -26,10 +27,10 @@ const styles = StyleSheet.create({
 function Links({ email, links }) {
   return (
     <View style={styles.links}>
-      <Text><Link src={'mailto:' + email }>{ email }</Link></Text>
-      <Text><Link src={ links.web.link }>{ links.web.text }</Link></Text>
-      <Text><Link src={ links.linkedin.link }>{ links.linkedin.text }</Link></Text>
-      <Text><Link src={ links.github.link }>{ links.github.text }</Link></Text>
+      <Text><Link src={'mailto:' + email } style={commonStyles.link}>{ email }</Link></Text>
+      <Text><Link src={ links.web.link } style={commonStyles.link}>{ links.web.text }</Link></Text>
+      <Text><Link src={ links.linkedin.link } style={commonStyles.link}>{ links.linkedin.text }</Link></Text>
+      <Text><Link src={ links.github.link } style={commonStyles.link}>{ links.github.text }</Link></Text>
     </View>
   )
 }

@@ -18,6 +18,11 @@
   overflow: scroll;
 }
 
+.live-sheet a,
+.live-sheet a:visited {
+  color: var(--color-link-live);
+}
+
 .live-header {
   display: flex;
   flex-direction: column;

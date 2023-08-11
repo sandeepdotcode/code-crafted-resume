@@ -6,6 +6,7 @@
   --input-bg: rgb(46, 46, 46);
   /* --color-accent: mediumslateblue; */
   --color-accent: #ce4257;
+  --color-link-live: #0a52cf;
 }
 
 *, *::before, *::after {

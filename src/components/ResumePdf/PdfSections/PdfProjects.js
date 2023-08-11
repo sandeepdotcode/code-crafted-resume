@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   linkItem: {
     display: 'flex',
     flexDirection: 'row',
-  }
+  },
 });
 
 function Project({ project }) {
@@ -38,11 +38,11 @@ function Project({ project }) {
       <View style={styles.linksLine}>
         <View style={styles.linkItem}>
           <Text>Code: </Text>
-          <Link src={project.code.link}><Text>{ project.code.text }</Text></Link>
+          <Link src={project.code.link}><Text style={commonStyles.link}>{ project.code.text }</Text></Link>
         </View>
         <View style={styles.linkItem}>
           <Text>Demo: </Text>
-          <Link src={project.demo.link}><Text>{ project.demo.text }</Text></Link>
+          <Link src={project.demo.link}><Text style={commonStyles.link}>{ project.demo.text }</Text></Link>
         </View>
       </View>
     </>
