@@ -98,7 +98,7 @@ function MainPage() {
   return (
     <div className={showLivePreview ? 'main-container dual-mode' : 'main-container'}>
       <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode} togglePreviewOn={togglePreviewOn}
-        showPreview={showPreview} showLivePreview={showLivePreview} />
+        showPreview={showPreview} showLivePreview={showLivePreview} currentIndex={currentIndex}/>
       <Editor currentIndex={currentIndex} showNextSection={showNextSection}
          showPrevSection={showPrevSection} showPreview={showPreview} showLivePreview={showLivePreview}/>
       { showSelectOverlay && <SectionSelect handleSectionAdd={handleSectionAdd}

@@ -1,3 +1,13 @@
+/* Sidebar */
+
+.sidebar {
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 10rem 8rem 2rem 5rem;
+}
+
 .sidebar > div {
   min-width: 4rem;
   min-height: 4rem;
@@ -30,6 +40,8 @@ div.layout-div {
 
 .layout-div > .layout-btn-div {
   height: 2.5rem;
+  display: flex;
+  gap: 0.2rem;
 }
 
 .layout-btn-div {
@@ -102,4 +114,35 @@ button.layout-opt-btn {
 .layout-dropdown svg {
   height: 1rem;
   width: 1rem;
+}
+
+
+/* ------------------- Sidebar Edit ----------------- */
+
+.sidbar-grab svg,
+.layout-del-btn svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.sidbar-grab:hover {
+  cursor: grab;
+}
+
+.layout-del-btn svg {
+  color: var(--color-accent);
+}
+
+.edit button {
+  min-width: 2.5rem;
+}
+
+.edit .layout-opt-btn {
+  display: none;
+}
+
+.layout-btn.stop {
+  display: flex;
+  gap: 0.2rem;
+  font-size: 0.8rem;
 }
