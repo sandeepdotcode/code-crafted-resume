@@ -317,3 +317,27 @@ button.grip-btn {
 .edu-body > label {
   min-width: 45%;
 }
+
+
+/* ------------------------------- Interests ----------------------------------- */
+
+.interest-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.interest-container > label {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.interest-container textarea {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  height: 100%;
+}
