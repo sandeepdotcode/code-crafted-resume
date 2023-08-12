@@ -23,9 +23,9 @@ function LayoutSortableBtn({ sectionKey, goToSection, index, deleteSection, curr
 
   return (
     <div className="layout-btn-div" ref={setNodeRef} style={style}>
-      { currentIndex === index && <div className="layout-current-indicator"></div> }
+      { currentIndex === index + 1 && <div className="layout-current-indicator"></div> }
       <button type="button" className="sidbar-grab" {...attributes} {...listeners}><FaGrip /></button>
-      <button type="button" className="layout-btn" onClick={() => {goToSection(index)}}>
+      <button type="button" className="layout-btn" onClick={() => {goToSection(index + 1)}}>
         {sections[sectionKey].icon}
       </button>
       <button type="button" className="layout-del-btn" onClick={() => { deleteSection(sectionKey) }}><FaTrash /></button>
