@@ -31,7 +31,7 @@ function SectionNav({
   );
 }
 
-function BulletSortable({ bulletText, id, index, parentIndex, sectionName, handleChange}) {
+function BulletSortable({ bulletText, id, index, parentIndex, sectionName, handleChange, removeBullet}) {
   const {
     attributes,
     listeners,
@@ -54,7 +54,7 @@ function BulletSortable({ bulletText, id, index, parentIndex, sectionName, handl
       </div>
       <input type="text" value={bulletText} onChange={(e) => { handleChange(e, index) }}
         placeholder={placeholderList[index]}></input>
-      <button type="button">Remove</button>
+      <button type="button" onClick={() => { removeBullet(id) }}>Remove</button>
     </div>
   );
 }

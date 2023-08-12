@@ -60,9 +60,13 @@ function ProjectForm({ index }) {
     ], index);
   };
 
+  const removeBullet = (id) => {
+    setProjectBullets(bullets.filter((bullet) => bullet.id !== id), index);
+  }
+
   const bulletList = bullets.map((bullet, bulletIndex) => {
     return (<BulletSortable key={bullet.id} id={bullet.id} index={bulletIndex} bulletText={bullet.text} 
-              handleChange={handleBulletChange} parentIndex={index} sectionName={"projects"} />);
+              handleChange={handleBulletChange} parentIndex={index} sectionName={"projects"} removeBullet={removeBullet}/>);
   });
 
   return (

@@ -22,7 +22,7 @@ const jobResp = [
   'Core responsibility #4.',
 ];
 
-function BulletSortable({ bulletText, id, index, jobIndex, handleChange}) {
+function BulletSortable({ bulletText, id, index, jobIndex, handleChange, removeBullet }) {
   const {
     attributes,
     listeners,
@@ -45,7 +45,7 @@ function BulletSortable({ bulletText, id, index, jobIndex, handleChange}) {
       </div>
       <input type="text" value={bulletText} onChange={(e) => { handleChange(e, index) }}
         placeholder={respList[index]}></input>
-      <button type="button">Remove</button>
+      <button type="button" onClick={() => { removeBullet(id) }}>Remove</button>
     </div>
   );
 }
@@ -90,9 +90,13 @@ function JobForm({ index }) {
     ], index);
   };
 
+  const removeBullet = (id) => {
+    setWorkBullets(bullets.filter((bullet) => bullet.id !== id), index);
+  };
+
   const bulletList = bullets.map((bullet, bulletIndex) => {
     return (<BulletSortable key={bullet.id} id={bullet.id} index={bulletIndex} bulletText={bullet.text} 
-              handleChange={handleBulletChange} jobIndex={index} />);
+              handleChange={handleBulletChange} jobIndex={index} removeBullet={removeBullet} />);
   });
 
   return (

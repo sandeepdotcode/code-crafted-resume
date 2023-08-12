@@ -46,9 +46,13 @@ function EducationForm({ index }) {
     ], index);
   };
 
+  const removeBullet = (id) => {
+    setEducationBullets(bullets.filter((bullet) => bullet.id !== id), index);
+  };
+
   const bulletList = bullets.map((bullet, bulletIndex) => {
     return (<BulletSortable key={bullet.id} id={bullet.id} index={bulletIndex} bulletText={bullet.text} 
-              handleChange={handleBulletChange} parentIndex={index} sectionName={"education"} />);
+              handleChange={handleBulletChange} parentIndex={index} sectionName={"education"} removeBullet={removeBullet} />);
   });
 
   return (
