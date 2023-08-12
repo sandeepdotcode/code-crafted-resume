@@ -7,7 +7,7 @@ import useFormStore from "../../store";
 import { useEffect } from "react";
 import { sortSections } from "../../helpers/utils";
 
-function LayoutSortableBtn({ sectionKey, goToSection, index, deleteSection }) {
+function LayoutSortableBtn({ sectionKey, goToSection, index, deleteSection, currentIndex }) {
   const {
     attributes,
     listeners,
@@ -23,6 +23,7 @@ function LayoutSortableBtn({ sectionKey, goToSection, index, deleteSection }) {
 
   return (
     <div className="layout-btn-div" ref={setNodeRef} style={style}>
+      { currentIndex === index && <div className="layout-current-indicator"></div> }
       <button type="button" className="sidbar-grab" {...attributes} {...listeners}><FaGrip /></button>
       <button type="button" className="layout-btn" onClick={() => {goToSection(index)}}>
         {sections[sectionKey].icon}
@@ -52,7 +53,8 @@ function EditModeBtns({ currentIndex, goToSection, setEditMode }) {
   const newAdded = added.slice(1);
   const layoutBtns = newAdded.map((sectionKey, index) => (
     <LayoutSortableBtn sectionKey={sectionKey} key={sectionKey} 
-      goToSection={goToSection} index={index} deleteSection={deleteSection} />
+      goToSection={goToSection} index={index} deleteSection={deleteSection}
+      currentIndex={currentIndex} />
   ));
   
   const handleDragEnd = (e) => {
@@ -100,10 +102,11 @@ function EditModeBtns({ currentIndex, goToSection, setEditMode }) {
   );
 }
 
-function LayoutBtn({ sectionKey, goToSection, index }) {
+function LayoutBtn({ sectionKey, goToSection, index, currentIndex={currentIndex} }) {
   if (sectionKey === 'personal') return null;
   return (
     <div className="layout-btn-div">
+      { currentIndex === index && <div className="layout-current-indicator"></div> }
       <button type="button" className="layout-btn" onClick={() => {goToSection(index)}}>
         {sections[sectionKey].icon}
       </button>
@@ -111,12 +114,12 @@ function LayoutBtn({ sectionKey, goToSection, index }) {
   );
 }
 
-function LayoutBtns({ goToSection }) {
+function LayoutBtns({ goToSection, currentIndex }) {
   const added = useFormStore((state) => state.sections.added);
 
   const layoutBtns = added.map((sectionKey, index) => (
     <LayoutBtn sectionKey={sectionKey} key={sectionKey} 
-      goToSection={goToSection} index={index} />
+      goToSection={goToSection} index={index} currentIndex={currentIndex} />
   ));
 
   return (

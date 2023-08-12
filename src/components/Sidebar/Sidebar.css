@@ -38,6 +38,16 @@ div.layout-div {
   position: relative;
 }
 
+.layout-current-indicator {
+  width: 1.2rem;
+  height: 2rem;
+  background-color: var(--input-bg);
+  position: absolute;
+  left: -1.1rem;
+  top: 0.25rem;
+  border-radius: 4px;
+}
+
 .layout-div > .layout-btn-div {
   height: 2.5rem;
   display: flex;
@@ -46,6 +56,7 @@ div.layout-div {
 
 .layout-btn-div {
   display: flex;
+  position: relative;
 }
 
 .layout-btn {

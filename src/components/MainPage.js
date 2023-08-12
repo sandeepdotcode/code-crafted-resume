@@ -3,7 +3,6 @@ import Sidebar from "./Sidebar/Sidebar";
 import Form from "./Form/Form";
 import './MainPage.css';
 import SectionSelect from "./Form/SectionSelect";
-import sections from "./Form/sectionData";
 import ResumeViewer from "./ResumePdf/ResumePdf";
 import useFormStore from "../store";
 import LivePreview from "./ResumePdf/LivePreview";
@@ -69,15 +68,6 @@ function MainPage() {
     setCurrentIndex(index);
   }
 
-  const sortAdded = () => {
-    const newAdded = [...sectionArrays.added];
-    newAdded.sort((a, b) => (sections[a].id - sections[b].id));
-    setSectionArrays({
-      ...sectionArrays,
-      added: newAdded,
-    })
-  };
-
   const toggleEditMode = () => {
     setShowLivePreview(!showLivePreview);
   };
@@ -89,7 +79,7 @@ function MainPage() {
   return (
     <div className={showLivePreview ? 'main-container dual-mode' : 'main-container'}>
       <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode} togglePreviewOn={togglePreviewOn}
-        showPreview={showPreview} showLivePreview={showLivePreview} currentIndex={currentIndex}/>
+        showPreview={showPreview} showLivePreview={showLivePreview} currentIndex={currentIndex} />
       <Editor currentIndex={currentIndex} showNextSection={showNextSection}
          showPrevSection={showPrevSection} showPreview={showPreview} showLivePreview={showLivePreview}/>
       { showSelectOverlay && <SectionSelect handleSectionAdd={handleSectionAdd}
