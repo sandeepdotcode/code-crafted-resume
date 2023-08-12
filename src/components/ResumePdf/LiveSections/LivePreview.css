@@ -2,6 +2,7 @@
 
 .live-container {
   flex: 1 1;
+  max-width: 40%;
   display: flex;
   padding: 2.5rem;
   padding-right: 5rem;
@@ -15,7 +16,7 @@
   padding: 3vh;
   font-family: 'Cormorant Garamond';
   font-size: 0.725vw;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .live-sheet a,

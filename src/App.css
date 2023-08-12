@@ -51,3 +51,16 @@ button {
   border: none;
   cursor: pointer;
 }
+
+*::-webkit-scrollbar {
+  width: 1px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--input-bg);
+  border-radius: 20px;
+}
