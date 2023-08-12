@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import IntroPage from './components/IntroPage';
 import MainPage from './components/MainPage';
 
 function App() {
-  const [CurrentPage, setCurrentPage ] = useState(() => MainPage); // default should be IntroPage, changed now for dev
+  const [ isFirstVisit, setIsFirstVisit ] = useState(true);
 
-  const gotoBuilder = () => {
-    setCurrentPage(() => MainPage);
-  }
+  useEffect(() => {
+    const isVisited = localStorage.getItem("is-visited");
+
+    if (isVisited)
+      setIsFirstVisit(false);
+  }, []);
+
+  const getStarted = () => {
+    setIsFirstVisit(false);
+    localStorage.setItem("is-visited", true);
+  };
 
   return( 
     <div className="App">
-      <CurrentPage getStartedFn={gotoBuilder} />
+      { isFirstVisit ? <IntroPage getStartedFn={getStarted} /> : <MainPage /> }
     </div>
   );
 }
