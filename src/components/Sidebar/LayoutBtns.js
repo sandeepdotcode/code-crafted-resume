@@ -102,7 +102,7 @@ function EditModeBtns({ currentIndex, goToSection, setEditMode }) {
   );
 }
 
-function LayoutBtn({ sectionKey, goToSection, index, currentIndex={currentIndex} }) {
+function LayoutBtn({ sectionKey, goToSection, index, currentIndex }) {
   if (sectionKey === 'personal') return null;
   return (
     <div className="layout-btn-div">
