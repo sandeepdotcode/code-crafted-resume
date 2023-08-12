@@ -4,9 +4,21 @@ import sections from "./sectionData";
 import useFormStore from "../../store";
 
 
-function FormTitle({ currentIndex, showPrevSection, showNextSection }) {
+function FormTitle({ currentIndex, handleShowOverlay, goToSection }) {
   const { added, available } = useFormStore((state) => state.sections);
   const currentSection = added[currentIndex];
+
+    const showNextSection = () => {
+    if (available.length && currentIndex === added.length - 1) {
+      handleShowOverlay();
+    } else {
+      goToSection(currentIndex + 1);
+    };
+  }
+
+  const showPrevSection = () => {
+    goToSection(currentIndex - 1);
+  }
 
   return (
     <div className="form-title-div">

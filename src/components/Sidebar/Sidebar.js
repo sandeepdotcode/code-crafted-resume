@@ -2,6 +2,7 @@ import { FaCircle, FaEye, FaAngleLeft } from "react-icons/fa6";
 import './Sidebar.css';
 import FillAndClear from "./fillAndClear";
 import LayoutController from "./LayoutController";
+import { useState } from "react";
 
 function LiveBtn({ showLivePreview, toggleSideBySide }) {
   return (
@@ -29,9 +30,12 @@ function PrevBtn({ showPreview, togglePreviewOn }) {
 }
 
 function Sidebar({ goToSection, toggleSideBySide, togglePreviewOn, showPreview, showLivePreview, currentIndex }) {
+  const [ editMode, setEditMode ] = useState(false);
+
   return (
     <div className="sidebar">
-      { !showPreview && <LayoutController goToSection={goToSection} currentIndex={currentIndex} /> }
+      { !showPreview && <LayoutController goToSection={goToSection} currentIndex={currentIndex}
+        editMode={editMode} setEditMode={setEditMode} /> }
       { !showPreview && <LiveBtn showLivePreview={showLivePreview} toggleSideBySide={toggleSideBySide} /> }
       <PrevBtn showPreview={showPreview} togglePreviewOn={togglePreviewOn} />
       { !showPreview && <FillAndClear goToSection={goToSection}/> }

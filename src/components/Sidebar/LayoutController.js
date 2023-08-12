@@ -44,9 +44,8 @@ function DropDown({ setEditMode, setDropDownOn }) {
   );
 }
 
-function LayoutController({ currentIndex, goToSection }) {
+function LayoutController({ currentIndex, goToSection, editMode, setEditMode }) {
   const [ dropDownOn, setDropDownOn ] = useState(false);
-  const [ editMode, setEditMode ] = useState(false);
 
    return (
     <div className={`layout-div${editMode ? ' edit' : ''}`}>

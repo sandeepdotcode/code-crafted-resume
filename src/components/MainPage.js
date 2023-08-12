@@ -4,43 +4,27 @@ import Form from "./Form/Form";
 import './MainPage.css';
 import SectionSelect from "./Form/SectionSelect";
 import ResumeViewer from "./ResumePdf/ResumePdf";
-import useFormStore from "../store";
 import LivePreview from "./ResumePdf/LivePreview";
 
-function Editor({ currentIndex, showNextSection, showPrevSection, showPreview, showLivePreview }) {
+function Editor({ currentIndex, showPreview, showLivePreview, handleShowOverlay, goToSection }) {
   if (showPreview) {
     return null;
   }
   return (
     <>
-      <Form currentIndex={currentIndex} showNextSection={showNextSection} showPrevSection={showPrevSection} />
+      <Form currentIndex={currentIndex} handleShowOverlay={handleShowOverlay} goToSection={goToSection} />
       { showLivePreview && <LivePreview /> }
     </>
   );
 }
 
 function MainPage() {
-  const [ sectionArrays, setSectionArrays ] = useFormStore((state) => [
-    state.sections, state.setSections
-  ]);
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ showSelectOverlay, setShowOverlay ] = useState(false);
   const [ showLivePreview, setShowLivePreview ] = useState(false);
   const [ showPreview, setShowPreview ] = useState(false); // for preview & download
 
-
-  const handleSectionAdd = (sectionKey) => {
-    const newAvailable = sectionArrays.available.filter(item => item !== sectionKey)
-    const newAdded = [...sectionArrays.added, sectionKey];
-    setSectionArrays({
-      available: newAvailable,
-      added: newAdded,
-    });
-    setShowOverlay(false);
-    setCurrentIndex(currentIndex + 1);
-  }
-
-  const handleShowOverlay = () => {
+ const handleShowOverlay = () => {
     setShowOverlay(true);
   }
 
@@ -49,19 +33,6 @@ function MainPage() {
     const isCloseBtn = e.target.classList.contains('select-close-btn');
     if (!(isCloseBtn || isOverlay)) return;
     setShowOverlay(false);
-  }
-
-  const showNextSection = () => {
-    const { available, added } = sectionArrays;
-    if (available.length && currentIndex === added.length - 1) {
-      handleShowOverlay();
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    };
-  }
-
-  const showPrevSection = () => {
-    setCurrentIndex(currentIndex - 1);
   }
 
   const goToSection = (index) => {
@@ -80,10 +51,10 @@ function MainPage() {
     <div className={showLivePreview ? 'main-container dual-mode' : 'main-container'}>
       <Sidebar goToSection={goToSection} toggleSideBySide={toggleEditMode} togglePreviewOn={togglePreviewOn}
         showPreview={showPreview} showLivePreview={showLivePreview} currentIndex={currentIndex} />
-      <Editor currentIndex={currentIndex} showNextSection={showNextSection}
-         showPrevSection={showPrevSection} showPreview={showPreview} showLivePreview={showLivePreview}/>
-      { showSelectOverlay && <SectionSelect handleSectionAdd={handleSectionAdd}
-        handleCloseOverlay={handleCloseOverlay} /> }
+      <Editor currentIndex={currentIndex} handleShowOverlay={handleShowOverlay} showPreview={showPreview} 
+        showLivePreview={showLivePreview} goToSection={goToSection} />
+      { showSelectOverlay && <SectionSelect handleCloseOverlay={handleCloseOverlay} setShowOverlay={setShowOverlay}
+        goToSection={goToSection} currentIndex={currentIndex} /> }
       { showPreview && <ResumeViewer /> }
     </div>
   )
