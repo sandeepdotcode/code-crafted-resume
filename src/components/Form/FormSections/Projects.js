@@ -84,7 +84,7 @@ function ProjectForm({ index }) {
             {bulletList}
           </SortableContext>
         </DndContext>
-        {bullets.length >= 3 
+        {bullets.length >= 5 
           ? ''
           : <AddMoreBtn divClass={"bullet-add-div"} btnClass={"bullet-add-btn"} clickHandler={addBullet} /> }
       </div>

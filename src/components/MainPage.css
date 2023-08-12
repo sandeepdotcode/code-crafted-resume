@@ -10,8 +10,11 @@
 .form-container {
   flex: 1 1;
   /* padding: 10rem 10rem 10rem 25rem; */
-  padding: 10rem;
+  padding: 8rem 10rem;
   /* padding-left: 0rem; */
+  overflow: scroll;
+  scrollbar-color: var(--color-accent) var(--input-bg);
+  height: 100%;
 }
 
 .dual-mode .form-container {
@@ -27,7 +30,7 @@
   border: 2px groove var(--input-bg);
   border-radius: 10px;
   margin-top: 1rem;
-  height: 100%;
+  min-height: 90%;
   padding: 2rem;
   display: flex;
   flex-direction: column;

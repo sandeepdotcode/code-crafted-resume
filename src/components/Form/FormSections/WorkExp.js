@@ -120,7 +120,7 @@ function JobForm({ index }) {
             {bulletList}
           </SortableContext>
         </DndContext>
-        {bulletList.length >= 4 
+        {bulletList.length >= 10 
           ? ''
           : <AddMoreBtn divClass={"bullet-add-div"} btnClass={"bullet-add-btn"} clickHandler={addBullet} /> }
       </div>
