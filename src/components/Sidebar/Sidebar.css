@@ -95,6 +95,10 @@ button.layout-opt-btn {
   right: 0.3rem;
 }
 
+.fill-btn-div.del button {
+  color: var(--color-accent);
+}
+
 /* ------------------- dropdown ----------------- */
 
 .layout-dropdown {

@@ -1,3 +1,4 @@
+import { FaGithub, FaLaptop, FaLinkedin, FaRegEnvelope } from "react-icons/fa6";
 import useFormStore from "../../../store";
 
 function PersonalLive() {
@@ -21,10 +22,22 @@ function LinksLive() {
 
   return (
     <div className="live-link-line">
-      <a target="_blank" href={ "mailto:" + email }>{ email }</a>
-      <a href={ links.web.link }>{ links.web.text }</a>
-      <a href={ links.linkedin.link }>{ links.linkedin.text }</a>
-      <a href={ links.github.link }>{ links.github.text }</a>
+      <a target="_blank" rel="noreferrer" href={ "mailto:" + email }>
+        <FaRegEnvelope />
+        { email }
+      </a>
+      <a target="_blank" rel="noreferrer" href={ links.web.link }>
+        <FaLaptop />
+        { links.web.text }
+      </a>
+      <a target="_blank" rel="noreferrer" href={ links.linkedin.link }>
+        <FaLinkedin />
+        { links.linkedin.text }
+      </a>
+      <a target="_blank" rel="noreferrer" href={ links.github.link }>
+        <FaGithub />
+        { links.github.text }
+      </a>
     </div>
   )
 }

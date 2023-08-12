@@ -34,7 +34,7 @@
 .live-header > div {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 0.65vw;
 }
 
@@ -51,6 +51,16 @@
   font-weight: 700;
   border-bottom: 0.5px solid black;
   margin-bottom: 0.3vw;
+}
+
+.live-link-line a {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.live-link-line svg {
+  color: black;
 }
 
 /*------------------ Live Skills ------------------------*/
@@ -77,7 +87,7 @@
   margin-bottom: 0.1vw;
 }
 
-/*------------------ Live Skills ------------------------*/
+/*------------------ Live Work ------------------------*/
 
 .live-sub-head-1 {
   font-weight: 700;
@@ -105,7 +115,7 @@
   margin-left: 0.1vw;
 }
 
-/*------------------ Live Skills ------------------------*/
+/*------------------ Live Projects ------------------------*/
 
 .live-proj-title {
   font-weight: 700;

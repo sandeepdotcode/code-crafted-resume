@@ -17,7 +17,7 @@ function FillAndClear({ goToSection }) {
   };
 
   return (
-    <div className="fill-btn-div">
+    <div className={`fill-btn-div${isClear ? '' : ' del'}`}>
       <button type="button" onClick={isClear ? fillSampleData : clearData}>
         { isClear ? <FaFillDrip /> : <FaTrash /> }
       </button>
