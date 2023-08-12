@@ -69,15 +69,6 @@ function MainPage() {
     setCurrentIndex(index);
   }
 
-  const sortAvailable = () => {
-    const newAvailable = [...sectionArrays.available];
-    newAvailable.sort((a, b) => sections[a].id - sections[b].id);
-    setSectionArrays({
-      ...sectionArrays,
-      available: newAvailable,
-    })
-  }
-
   const sortAdded = () => {
     const newAdded = [...sectionArrays.added];
     newAdded.sort((a, b) => (sections[a].id - sections[b].id));

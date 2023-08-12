@@ -2,6 +2,8 @@ import { EditModeBtns, LayoutBtns } from "./LayoutBtns";
 import { useEffect, useState } from "react";
 import { FaEllipsis, FaUser } from "react-icons/fa6";
 import { FaEdit, FaSortAmountDownAlt } from "react-icons/fa";
+import useFormStore from "../../store";
+import sections from "../Form/sectionData";
 
 function DropDown({ setEditMode, setDropDownOn }) {
   useEffect(() => {

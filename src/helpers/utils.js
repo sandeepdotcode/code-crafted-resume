@@ -1,4 +1,5 @@
 import uniqid from "uniqid";
+import sections from "../components/Form/sectionData";
 
 function getNewBullet() {
   return { id: uniqid(), text: '' };
@@ -57,5 +58,11 @@ function getEduObj() {
   };
 }
 
+function sortSections(sectionArray) {
+  const newSectionArray = [...sectionArray];
+
+  return newSectionArray.sort((a, b) => sections[a].id - sections[b].id);
+}
+
 export { getNewBullet, getBulletList, getWorkObj,
-  getProjObj, getEduObj };
+  getProjObj, getEduObj, sortSections };

@@ -5,8 +5,9 @@ import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } 
 import { CSS } from "@dnd-kit/utilities";
 import useFormStore from "../../store";
 import { useEffect } from "react";
+import { sortSections } from "../../helpers/utils";
 
-function LayoutSortableBtn({ sectionKey, goToSection, index }) {
+function LayoutSortableBtn({ sectionKey, goToSection, index, deleteSection }) {
   const {
     attributes,
     listeners,
@@ -26,7 +27,7 @@ function LayoutSortableBtn({ sectionKey, goToSection, index }) {
       <button type="button" className="layout-btn" onClick={() => {goToSection(index)}}>
         {sections[sectionKey].icon}
       </button>
-      <button type="button" className="layout-del-btn"><FaTrash /></button>
+      <button type="button" className="layout-del-btn" onClick={() => { deleteSection(sectionKey) }}><FaTrash /></button>
     </div>
   );
 }
@@ -37,10 +38,21 @@ function EditModeBtns({ currentIndex, goToSection, setEditMode }) {
     state.sections, state.setSections
   ])
 
+  const deleteSection = (section) => {
+    if (currentIndex === added.indexOf(section))
+      goToSection(0);
+    if (currentIndex > added.indexOf(section))
+      goToSection(currentIndex - 1);
+    setSectionArrays({
+      added: added.filter((sName) => sName !== section),
+      available: sortSections([...sectionArrays.available, section]),
+    });
+  }
+
   const newAdded = added.slice(1);
   const layoutBtns = newAdded.map((sectionKey, index) => (
     <LayoutSortableBtn sectionKey={sectionKey} key={sectionKey} 
-      goToSection={goToSection} index={index} />
+      goToSection={goToSection} index={index} deleteSection={deleteSection} />
   ));
   
   const handleDragEnd = (e) => {
