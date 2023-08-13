@@ -142,7 +142,7 @@ button.grip-btn {
   filter: brightness(0.7);
 }
 
-/* section select */
+/* ---------------------------- section select ------------------------ */
 
 .select-overlay {
   position: fixed;
@@ -154,12 +154,13 @@ button.grip-btn {
 }
 
 .select-container {
-  width: 50%;
-  height: 60%;
+  min-height: 40%;
   background-color: var(--color-bg);
   padding: 1.2rem;
   border: 5px solid var(--input-bg);
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .select-top {
@@ -167,6 +168,16 @@ button.grip-btn {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+.select-list {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem 1.5rem;
+  width: 700px;
+  min-height: 60%;
 }
 
 .select-close-btn {
@@ -176,9 +187,10 @@ button.grip-btn {
 }
 
 .select-card {
-  width: 11rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   padding: 0.5rem;
   color: var(--input-bg);
   border-radius: 3px;
@@ -187,6 +199,9 @@ button.grip-btn {
 .select-card-top {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 0.3rem;
 }
 
 /* ------------------------------- Work Exp ----------------------------------- */
