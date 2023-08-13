@@ -1,4 +1,4 @@
-import { Page, Text, View, Document, StyleSheet, usePDF, Font } from "@react-pdf/renderer";
+import { Page, Document, StyleSheet, usePDF, Font } from "@react-pdf/renderer";
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import pdfjsWorker from "pdfjs-dist/webpack";
 import { useCallback, useEffect, useRef, useState } from "react";
