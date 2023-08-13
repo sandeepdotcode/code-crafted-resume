@@ -89,6 +89,7 @@ function ResumePdf() {
 let NUM_PAGES = 1;
 
 function ResumeViewer() {
+  // eslint-disable-next-line no-unused-vars
   const [instance, updateInstance] = usePDF({ document: ResumePdf() });
   pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
   const canvasRef = useRef(null);
