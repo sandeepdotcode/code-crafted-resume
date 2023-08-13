@@ -22,22 +22,26 @@ function LinksLive() {
 
   return (
     <div className="live-link-line">
-      <a target="_blank" rel="noreferrer" href={ "mailto:" + email }>
-        <FaRegEnvelope />
-        { email }
-      </a>
-      <a target="_blank" rel="noreferrer" href={ links.web.link }>
-        <FaLaptop />
-        { links.web.text }
-      </a>
-      <a target="_blank" rel="noreferrer" href={ links.linkedin.link }>
-        <FaLinkedin />
-        { links.linkedin.text }
-      </a>
-      <a target="_blank" rel="noreferrer" href={ links.github.link }>
-        <FaGithub />
-        { links.github.text }
-      </a>
+      { email !== '' &&
+        <a target="_blank" rel="noreferrer" href={ "mailto:" + email }>
+          <FaRegEnvelope />
+          { email }
+        </a> }
+      { links.web.link !== '' &&
+        <a target="_blank" rel="noreferrer" href={ links.web.link }>
+          <FaLaptop />
+          { links.web.text }
+        </a> }
+      { links.linkedin.link !== '' &&
+        <a target="_blank" rel="noreferrer" href={ links.linkedin.link }>
+          <FaLinkedin />
+          { links.linkedin.text }
+        </a> }
+      { links.github.link !== '' &&
+        <a target="_blank" rel="noreferrer" href={ links.github.link }>
+          <FaGithub />
+          { links.github.text }
+        </a> }
     </div>
   )
 }
