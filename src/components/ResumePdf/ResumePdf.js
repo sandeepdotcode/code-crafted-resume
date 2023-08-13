@@ -1,4 +1,4 @@
-import { Page, Document, StyleSheet, usePDF, Font } from "@react-pdf/renderer";
+import { Page, Document, StyleSheet, usePDF, Font, View, Text } from "@react-pdf/renderer";
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import pdfjsWorker from "pdfjs-dist/webpack";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     padding: 10,
     flexGrow: 1
   },
+  summary: {
+    fontSize: 12,
+  }
 });
 
 function ResumePdf() {
@@ -80,6 +83,7 @@ function ResumePdf() {
     <Document>
       <Page size="A4" style={styles.page}>
         <Header personal={personal} links={links}/>
+        { personal.summary !== '' && <View style={styles.summary}><Text>{ personal.summary }</Text></View>}
         { pdfSections }
       </Page>
     </Document>

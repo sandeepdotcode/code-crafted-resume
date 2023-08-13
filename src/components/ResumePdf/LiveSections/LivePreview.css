@@ -64,6 +64,10 @@
   color: black;
 }
 
+.live-summary-div {
+  padding: 0.2vw 0;
+}
+
 /*------------------ Live Skills ------------------------*/
 
 .live-skill-subheading {

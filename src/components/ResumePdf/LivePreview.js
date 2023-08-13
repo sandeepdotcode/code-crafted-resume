@@ -5,6 +5,7 @@ import LiveEdu from "./LiveSections/LiveEdu";
 import "./LiveSections/LivePreview.css";
 import LiveProjects from "./LiveSections/LiveProjects";
 import LiveSkills from "./LiveSections/LiveSkills";
+import LiveSummary from "./LiveSections/LiveSummary";
 import LiveWork from "./LiveSections/LiveWork";
 
 const liveSEctions = {
@@ -32,6 +33,7 @@ function LivePreview() {
     <div className="live-container">
       <div className="live-sheet">
         <Header />
+        <LiveSummary />
         { liveSections }
       </div>
     </div>
