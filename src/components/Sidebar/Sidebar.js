@@ -14,6 +14,7 @@ function LiveBtn({ showLivePreview, toggleSideBySide }) {
             : (<> <FaCircle className="dual-icon-1"></FaCircle><FaCircle className="dual-icon-2"></FaCircle> </>)
           }
         </button>
+        <div className="sidebar-tooltip">{ showLivePreview ? 'Editor Only' : 'Live Preview' }</div>
       </div>
     </>
   );
@@ -25,6 +26,7 @@ function PrevBtn({ showPreview, togglePreviewOn }) {
       <button type="button" className="preview-btn" onClick={togglePreviewOn}>
         { showPreview ? <FaAngleLeft></FaAngleLeft> : <FaEye></FaEye> }
       </button>
+      <div className="sidebar-tooltip">{ showPreview ? 'Go Back' : 'Preview PDF & Download' }</div>
     </div>
   )
 }

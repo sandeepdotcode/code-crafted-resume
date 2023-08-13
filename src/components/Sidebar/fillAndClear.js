@@ -21,6 +21,7 @@ function FillAndClear({ goToSection }) {
       <button type="button" onClick={isClear ? fillSampleData : clearData}>
         { isClear ? <FaFillDrip /> : <FaTrash /> }
       </button>
+      <div className="sidebar-tooltip">{ isClear ? 'Fill Sample Data' : 'Clear Form Data' }</div>
     </div>
   );
 }

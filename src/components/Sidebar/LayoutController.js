@@ -54,6 +54,7 @@ function LayoutController({ currentIndex, goToSection, editMode, setEditMode }) 
         <button type="button" className="layout-btn" onClick={() => { goToSection(0) }}>
           <FaUser />
         </button>
+        <div className="layout-tooltip">Personal</div>
       </div>
       { editMode 
         ? <EditModeBtns goToSection={goToSection} currentIndex={currentIndex} setEditMode={setEditMode} /> 

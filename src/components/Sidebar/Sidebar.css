@@ -13,6 +13,7 @@
   min-height: 4rem;
   border-radius: 5px;
   background-color: var(--input-bg);
+  position: relative;
 }
 
 .sidebar button {
@@ -160,4 +161,56 @@ button.layout-opt-btn {
   display: flex;
   gap: 0.2rem;
   font-size: 0.8rem;
+}
+
+/* ------------------- Sidebar Tooltips ----------------- */
+
+.sidebar-tooltip,
+.layout-tooltip {
+  position: absolute;
+  margin-left: 1.2rem;
+  background-color: var(--input-bg);
+  border-radius: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  left: 100%;
+  width: fit-content;
+  height: auto;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+
+  opacity: 0;
+  transition: opacity 0.4s;
+  visibility: hidden;
+}
+
+.sidebar-tooltip {
+  top: 0;
+}
+
+.sidebar-tooltip::before,
+.layout-tooltip::before {
+  content: "";
+  position: absolute;
+  border: 0.5rem solid var(--input-bg);
+  margin-left: -1.3rem;
+  border-color: transparent var(--input-bg) transparent transparent;
+  visibility: hidden;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.layout-btn-div:hover > .layout-tooltip,
+.sidebar > div:hover > .sidebar-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.layout-btn-div:hover > .layout-tooltip::before,
+.sidebar > div:hover > .sidebar-tooltip::before {
+  visibility: visible;
+  opacity: 1;
 }

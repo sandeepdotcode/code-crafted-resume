@@ -110,6 +110,7 @@ function LayoutBtn({ sectionKey, goToSection, index, currentIndex }) {
       <button type="button" className="layout-btn" onClick={() => {goToSection(index)}}>
         {sections[sectionKey].icon}
       </button>
+      <div className="layout-tooltip">{ sections[sectionKey].name }</div>
     </div>
   );
 }
