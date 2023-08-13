@@ -168,7 +168,7 @@ function Skills() {
           { isSimpleSkills ? null : <SectionNav delCdtn={false} backCdtn={currentIndex > 0} nextCdtn={currentIndex < 2} addCdtn={false}
             deleteFn={null} navFn={setCurrentIndex} addFn={null} currentIndex={currentIndex} /> }
           <div className="skill-toggle">
-            <label>{isSimpleSkills ? 'Show Expanded Form' : 'Show Simple Form'}
+            <label>Show Simple Form
               <input type="checkbox" onClick={toggleSimpleSkills}></input>
             </label>
           </div>

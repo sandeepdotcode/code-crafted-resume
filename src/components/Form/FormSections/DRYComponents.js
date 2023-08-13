@@ -54,7 +54,7 @@ function BulletSortable({ bulletText, id, index, parentIndex, sectionName, handl
       </div>
       <input type="text" value={bulletText} onChange={(e) => { handleChange(e, index) }}
         placeholder={placeholderList[index]}></input>
-      <button type="button" onClick={() => { removeBullet(id) }}>Remove</button>
+      <button type="button" className="bullet-remove-btn" onClick={() => { removeBullet(id) }}>Remove</button>
     </div>
   );
 }

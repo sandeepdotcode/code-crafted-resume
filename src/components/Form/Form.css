@@ -101,14 +101,17 @@ div.skill-toggle > label {
 }
 
 .skill-div button,
-.skill-add-div button {
+.skill-add-div button,
+.bullet-add-btn,
+.bullet-remove-btn {
   border-radius: 3px;
   width: 6rem;
   height: 2rem;
   font-size: 0.9rem;
 }
 
-.skill-div > button {
+.skill-div > button,
+.bullet-remove-btn {
   background-color: var(--color-accent);
   color: var(--color-text);
 }
