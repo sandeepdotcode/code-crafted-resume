@@ -8,7 +8,9 @@ You can drag to reorder form lists and resume sections from the side bar, live p
 
 The app uses [@react-pdf/renderer](https://react-pdf.org/) to render the pdf on the client so there are no worries of leaking your data. There is no collection or sharing of data involved.
 
-The format of the rendered resume was heavily dependendent on the template provided by Colin at [Sheets & Giggles](https://sheetsgiggles.com/) in one of the top posts on the r/jobs subreddit. If you prefer to create your resume from the original template document, here is the link: [SheetsResume.com](https://sheetsresume.com/resume-template/). It is available as both Word Document and Google Doc.
+## Disclaimer
+
+The format of the rendered resume was heavily dependent on the template provided by Colin at [Sheets & Giggles](https://sheetsgiggles.com/) in one of the top posts on the r/jobs subreddit. If you prefer to create your resume from the original template document, here is the link: [SheetsResume.com](https://sheetsresume.com/resume-template/). It is available as both Word Document and Google Doc.
 
 ## Preview
 
