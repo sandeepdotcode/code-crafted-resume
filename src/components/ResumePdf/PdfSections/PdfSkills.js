@@ -45,9 +45,9 @@ function SkillItem({ text, index }) {
 }
 
 function Skills({ lang, frame, tools }) {
-  const langs = lang.map((langObj, index) => (<SkillItem text={langObj.text} index={index} />));
-  const frames = frame.map((frameObj, index) => (<SkillItem text={frameObj.text} index={index} />));
-  const toolss = tools.map((tool, index) => (<SkillItem text={tool.text} index={index} />));
+  const langs = lang.map((langObj, index) => (<SkillItem text={langObj.text} index={index} key={index} />));
+  const frames = frame.map((frameObj, index) => (<SkillItem text={frameObj.text} index={index} key={index} />));
+  const toolss = tools.map((tool, index) => (<SkillItem text={tool.text} index={index} key={index} />));
 
   return (
     <View style={styles.skillBlock}>
@@ -68,7 +68,7 @@ function Skills({ lang, frame, tools }) {
 }
 
 function SimpleSkills({ simpleSkills }) {
-  const skillText = simpleSkills.map((skill) => (<Text>{ skill.name }</Text>))
+  const skillText = simpleSkills.map((skill) => (<Text key={skill}>{ skill.name }</Text>))
 
   return (
     <View style={styles.simpleSkills}>

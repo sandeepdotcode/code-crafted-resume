@@ -63,15 +63,15 @@ function ResumePdf() {
   const pdfSections = added.map((section, index) => {
     switch (section) {
       case "skills":
-        return (<PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills}/>);
+        return (<PdfSkills isSimpleSkills={isSimpleSkills} skills={skills} simpleSkills={simpleSkills} key={section} />);
       case 'work':
-        return (<PdfWork workArray={workArray} />);
+        return (<PdfWork workArray={workArray} key={section} />);
       case 'projects':
-        return (<PdfProjects projectsArray={projectsArray} />);
+        return (<PdfProjects projectsArray={projectsArray} key={section} />);
       case 'education':
-        return (<PdfEdu eduArray={eduArray} />);
+        return (<PdfEdu eduArray={eduArray} key={section} />);
       case 'certInt':
-        return (<PdfCertInt certInt={certInt} />);
+        return (<PdfCertInt certInt={certInt} key={section} />);
       case 'personal':
       case 'links':
       default:
