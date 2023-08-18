@@ -9,7 +9,9 @@ You can drag to reorder form lists and resume sections from the side bar, live p
 The app uses [@react-pdf/renderer](https://react-pdf.org/) to render the pdf on the client so there are no worries of leaking your data. There is no collection or sharing of data involved.
 
 ```
-NOTICE: The App isn't really responsive right now. It does not display well on smaller screens & also when zoomed in. Fixing this is a priority and I'm working on improving the layout & responisiveness of the app. Changes are being made in branch fix-responsive-issue
+NOTICE: The App isn't really responsive right now. It does not display well on smaller 
+screens & also when zoomed in. Fixing this is a priority and I'm working on improving the 
+layout & responisiveness of the app. Changes are being made in branch fix-responsive-issue
 ```
 
 ## Disclaimer
