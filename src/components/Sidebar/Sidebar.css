@@ -216,3 +216,26 @@ button.layout-opt-btn {
   visibility: visible;
   opacity: 1;
 }
+
+@media screen 
+  and (max-width: 1500px) {
+    .sidebar {
+      position: absolute;
+      bottom: 2rem;
+      flex-direction: row;
+      min-height: 0;
+      z-index: 100;
+    }
+
+    div.layout-div {
+      flex-direction: row;
+    }
+
+    .layout-div > .layout-btn-div {
+      width: 2.5rem;
+    }
+
+    button.layout-opt-btn {
+      width: 2.5rem;
+    }
+}
