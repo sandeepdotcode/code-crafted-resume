@@ -14,6 +14,13 @@ screens & also when zoomed in. Fixing this is a priority and I'm working on impr
 layout & responisiveness of the app. Changes are being made in branch fix-responsive-issue
 ```
 
+## Latest Changes
+
+1. The generated resume is now ATS friendly
+   - The text copied from the PDF generated used to be garbled.
+   - This has been fixed by patching the package `@react-pdf/pdfkit` with code from [#2408](https://github.com/diegomura/react-pdf/pull/2408) which fixes the issues [#915](https://github.com/diegomura/react-pdf/issues/915) and [#1950](https://github.com/diegomura/react-pdf/issues/1950).
+   - The patch can be removed on the next release of `@react-pdf/pdfkit` when the pull request [#2408](https://github.com/diegomura/react-pdf/pull/2408) is merged.
+
 ## Disclaimer
 
 The format of the rendered resume was heavily dependent on the template provided by Colin at [Sheets & Giggles](https://sheetsgiggles.com/) in one of the top posts on the r/jobs subreddit. If you prefer to create your resume from the original template document, here is the link: [SheetsResume.com](https://sheetsresume.com/resume-template/). It is available as both Word Document and Google Doc.
