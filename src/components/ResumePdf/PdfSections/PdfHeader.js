@@ -4,6 +4,7 @@ import githubIcon from "../../../assets/link-icons/github.png";
 import linkedinIcon from "../../../assets/link-icons/linkedin.png";
 import mailIcon from "../../../assets/link-icons/envelope-regular.png";
 import webIcon from "../../../assets/link-icons/laptop-solid.png";
+import fontSettings from "../../../assets/fontSettings";
 
 
 const styles = StyleSheet.create({
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    fontFamily: 'Garamond',
+    fontFamily: fontSettings.regularFont,
     fontWeight: 700,
   },
   title: {

@@ -1,4 +1,5 @@
 import { StyleSheet } from "@react-pdf/renderer";
+import fontSettings from "../../../assets/fontSettings";
 
 const commonStyles = StyleSheet.create({
   bulletBlock: {
@@ -9,7 +10,7 @@ const commonStyles = StyleSheet.create({
   },
   heading: {
     fontSize: 12,
-    fontFamily: 'Garamond',
+    fontFamily: fontSettings.regularFont,
     fontWeight: 700,
     borderBottom: '0.5 solid #000',
     marginBottom: 5,

@@ -15,6 +15,7 @@ import PdfProjects from "./PdfSections/PdfProjects";
 import PdfEdu from "./PdfSections/PdfEdu";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import PdfCertInt from "./PdfSections/PdfCertInt";
+import fontSettings from "../../assets/fontSettings";
 
 Font.register({ 
   family: 'Garamond',
@@ -33,7 +34,7 @@ Font.register({
 const styles = StyleSheet.create({
   page: {
     padding: 30,
-    fontFamily: 'Garamond',
+    fontFamily: fontSettings.regularFont,
     display: 'flex',
     flexDirection: 'column',
     gap: 5,
