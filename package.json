@@ -21,6 +21,7 @@
     "zustand": "^4.3.9"
   },
   "scripts": {
+	"postinstall": "patch-package",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "patch-package": "^8.0.0"
   }
 }
